@@ -1,779 +1,792 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Web Prediksi Jurusan & Karir berbasis tes MBTI, minat, dan bakat. Temukan jalur karier terbaik untukmu.">
+        <meta name="author" content="Prediksi Karir Tim">
 
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <title>PrediksiKarir – Temukan Jurusan & Karir Sesuai Potensimu</title>
 
-        <title>Topic Listing Bootstrap 5 Template</title>
-
-        <!-- CSS FILES -->        
+        <!-- CSS FILES -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-                        
+
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
         <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="css/templatemo-topic-listing.css" rel="stylesheet">
 
-        <link href="css/templatemo-topic-listing.css" rel="stylesheet">      
-<!--
+        <style>
+            /* ── HOW IT WORKS ── */
+            .how-it-works-section {
+                padding-top: 100px;
+                padding-bottom: 100px;
+            }
+            .step-card {
+                position: relative;
+                background: #fff;
+                border-radius: 20px;
+                padding: 36px 28px;
+                box-shadow: 0 4px 24px rgba(19,84,122,0.08);
+                height: 100%;
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            .step-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 36px rgba(19,84,122,0.14);
+            }
+            .step-number {
+                position: absolute;
+                top: -18px;
+                left: 28px;
+                background: linear-gradient(135deg, #13547a 0%, #80d0c7 100%);
+                color: #fff;
+                font-family: var(--title-font-family);
+                font-size: 22px;
+                font-weight: 700;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .step-connector {
+                display: none;
+            }
+            @media (min-width: 992px) {
+                .step-connector {
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    right: -20px;
+                    width: 40px;
+                    height: 2px;
+                    background: linear-gradient(90deg, #80d0c7, transparent);
+                    z-index: 2;
+                }
+            }
 
-TemplateMo 590 topic listing
+            /* ── SOCIAL PROOF STRIP ── */
+            .social-proof-section {
+                padding: 60px 0;
+                background: linear-gradient(135deg, #13547a 0%, #80d0c7 100%);
+            }
+            .proof-item {
+                text-align: center;
+                color: #fff;
+            }
+            .proof-item .proof-number {
+                font-family: var(--title-font-family);
+                font-size: 46px;
+                font-weight: 700;
+                line-height: 1;
+                color: #fff;
+            }
+            .proof-item .proof-label {
+                font-size: 14px;
+                opacity: 0.85;
+                margin-top: 6px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .proof-divider {
+                width: 1px;
+                height: 60px;
+                background: rgba(255,255,255,0.3);
+                margin: auto;
+            }
 
-https://templatemo.com/tm-590-topic-listing
+            /* ── FEATURE CARDS (keunggulan) ── */
+            .feature-icon-wrap {
+                width: 64px;
+                height: 64px;
+                background: linear-gradient(135deg, rgba(19,84,122,0.08) 0%, rgba(128,208,199,0.18) 100%);
+                border-radius: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 20px;
+            }
 
--->
+            /* ── CTA SECTION ── */
+            .cta-section {
+                background: linear-gradient(135deg, #13547a 0%, #80d0c7 100%);
+                padding: 80px 0;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+            .cta-section::before {
+                content: '';
+                position: absolute;
+                top: -80px; right: -80px;
+                width: 320px; height: 320px;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.06);
+                pointer-events: none;
+            }
+            .cta-section::after {
+                content: '';
+                position: absolute;
+                bottom: -60px; left: -60px;
+                width: 220px; height: 220px;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.06);
+                pointer-events: none;
+            }
+            .cta-btn-white {
+                background: #fff;
+                color: var(--primary-color);
+                border: 2px solid #fff;
+                border-radius: 100px;
+                font-family: var(--title-font-family);
+                font-size: 18px;
+                font-weight: 700;
+                padding: 14px 36px;
+                transition: all 0.3s;
+                display: inline-block;
+                text-decoration: none;
+            }
+            .cta-btn-white:hover {
+                background: transparent;
+                color: #fff;
+            }
+            .cta-btn-outline {
+                background: transparent;
+                color: #fff;
+                border: 2px solid rgba(255,255,255,0.6);
+                border-radius: 100px;
+                font-family: var(--title-font-family);
+                font-size: 18px;
+                font-weight: 600;
+                padding: 14px 36px;
+                transition: all 0.3s;
+                display: inline-block;
+                text-decoration: none;
+            }
+            .cta-btn-outline:hover {
+                border-color: #fff;
+                color: #fff;
+                background: rgba(255,255,255,0.1);
+            }
+
+            /* ── BADGE COLORS ── */
+            .bg-finance { background-color: #13547a !important; }
+            .bg-design  { background-color: #80d0c7 !important; color: #13547a !important; }
+            .bg-advertising { background-color: #f0f8ff !important; color: #13547a !important; border: 1px solid #80d0c7; }
+
+            /* ── HERO IMAGE CARD ── */
+            .hero-card-wrap {
+                position: relative;
+            }
+            .hero-card-wrap .hero-badge {
+                position: absolute;
+                background: #fff;
+                border-radius: 12px;
+                padding: 10px 16px;
+                box-shadow: 0 8px 24px rgba(19,84,122,0.18);
+                font-family: var(--title-font-family);
+                font-size: 13px;
+                font-weight: 600;
+                color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .hero-card-wrap .badge-tl {
+                top: 20px; left: -20px;
+            }
+            .hero-card-wrap .badge-br {
+                bottom: 20px; right: -10px;
+            }
+            @media (max-width: 768px) {
+                .hero-card-wrap .hero-badge { display: none; }
+                .stats-strip { gap: 24px; padding: 14px 20px; }
+            }
+
+            /* ── CONTACT ICONS ── */
+            .contact-info-item {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                margin-bottom: 20px;
+            }
+            .contact-icon-box {
+                width: 46px; height: 46px;
+                background: linear-gradient(135deg, #13547a 0%, #80d0c7 100%);
+                border-radius: 12px;
+                display: flex; align-items: center; justify-content: center;
+                color: #fff;
+                font-size: 18px;
+                flex-shrink: 0;
+            }
+        </style>
     </head>
-    
-    <body id="top">
 
+    <body id="top">
         <main>
 
+            <!-- ════════════ NAVBAR ════════════ -->
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="index.html">
-                        <i class="bi-back"></i>
-                        <span>Topic</span>
+                        <i class="bi-compass"></i>
+                        <span>Prediksi<span style="color:var(--secondary-color)">Karir</span></span>
                     </a>
 
                     <div class="d-lg-none ms-auto me-4">
-                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                        <a href="tes.html" class="navbar-icon bi-person smoothscroll"></a>
                     </div>
-    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-    
+
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-lg-5 me-lg-auto">
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_1">Home</a>
+                                <a class="nav-link click-scroll active" href="#section_1">Beranda</a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_2">Browse Topics</a>
+                                <a class="nav-link click-scroll" href="#section_2">Metode Tes</a>
                             </li>
-    
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_3">How it works</a>
+                                <a class="nav-link click-scroll" href="#section_3">Keunggulan</a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_4">FAQs</a>
+                                <a class="nav-link click-scroll" href="#section_4">FAQ</a>
                             </li>
-    
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_5">Contact</a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-
-                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
-
-                                    <li><a class="dropdown-item" href="contact.html">Contact Form</a></li>
-                                </ul>
+                                <a class="nav-link click-scroll" href="#section_5">Kontak</a>
                             </li>
                         </ul>
 
                         <div class="d-none d-lg-block">
-                            <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                            <a href="tes.html" class="btn custom-btn" style="font-size:14px; padding: 8px 20px;">
+                                <i class="bi-play-circle me-1"></i> Mulai Tes
+                            </a>
                         </div>
                     </div>
                 </div>
             </nav>
-            
 
-            <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+
+            <!-- ════════════ HERO ════════════ -->
+            <header class="site-header d-flex flex-column justify-content-center align-items-center" id="section_1">
                 <div class="container">
-                    <div class="row">
+                    <div class="row align-items-center">
 
-                        <div class="col-lg-8 col-12 mx-auto">
-                            <h1 class="text-white text-center">Discover. Learn. Enjoy</h1>
+                        <!-- LEFT: Text -->
+                        <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                            <span style="background:rgba(128,208,199,0.2); color:var(--secondary-color); border:1px solid rgba(128,208,199,0.4); border-radius:100px; font-size:13px; font-weight:600; padding:6px 16px; letter-spacing:0.5px; display:inline-block; margin-bottom:20px;">
+                                🎯 Berbasis Psikologi Terakreditasi
+                            </span>
 
-                            <h6 class="text-center">platform for creatives around the world</h6>
+                            <h1 class="text-white mb-4">
+                                Temukan Jurusan &amp; Karir<br>
+                                <span style="color:var(--secondary-color)">Sesuai Potensimu</span>
+                            </h1>
 
-                            <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search">
-                                <div class="input-group input-group-lg">
-                                    <span class="input-group-text bi-search" id="basic-addon1">
-                                        
-                                    </span>
+                            <p class="text-white mb-4" style="font-size:18px; opacity:0.9; line-height:1.7;">
+                                Gabungan analisis <strong style="color:var(--secondary-color)">MBTI</strong>,
+                                <strong style="color:var(--secondary-color)">minat</strong>, dan
+                                <strong style="color:var(--secondary-color)">bakat</strong> memberikan rekomendasi
+                                pendidikan &amp; karier yang paling sesuai dengan dirimu.
+                            </p>
 
-                                    <input name="keyword" type="search" class="form-control" id="keyword" placeholder="Design, Code, Marketing, Finance ..." aria-label="Search">
+                            <div class="d-flex flex-wrap gap-3">
+                                <a href="tes.html" class="btn custom-btn" style="font-size:16px; padding:12px 28px;">
+                                    <i class="bi-play-circle me-2"></i>Mulai Tes Gratis
+                                </a>
+                                <a href="#section_2" class="btn custom-border-btn custom-btn-bg-white smoothscroll" style="font-size:16px; padding:12px 28px;">
+                                    Lihat Cara Kerja
+                                </a>
+                            </div>
+                        </div>
 
-                                    <button type="submit" class="form-control">Search</button>
+                        <!-- RIGHT: Image card -->
+                        <div class="col-lg-6 col-12 mb-5 mb-lg-0 text-center">
+                            <div class="hero-card-wrap position-relative">
+                                <div class="hero-badge badge-tl" style="position: absolute; top: 20px; left: -20px; z-index: 2;">
+                                    <i class="bi-check-circle-fill" style="color:#80d0c7"></i> Akurasi Tinggi
+                                </div>
+                                <div class="topics-detail-block bg-white shadow-lg" style="border-radius: 20px; padding: 20px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+                                    <img src="images/topics/undraw_Remote_design_team_re_urdx.png"
+                                        class="topics-detail-block-image img-fluid"
+                                        alt="Dashboard Prediksi Karir"
+                                        style="max-width: 100%; height: auto;">
+                                </div>
+
+                                <div class="hero-badge badge-br" style="position: absolute; bottom: 20px; right: -20px; z-index: 2;">
+                                    <i class="bi-shield-check-fill" style="color:#13547a"></i> Berbasis Psikologi Valid
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+
+            <!-- ════════════ METODE TES ════════════ -->
+            <section class="section-padding" id="section_2">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-12 text-center">
+                            <h6 class="text-uppercase" style="letter-spacing:2px;">Metode Prediksi</h6>
+                            <h2 class="mb-3">Aspek <span style="color:var(--primary-color)">Penilaian</span></h2>
+                            <p class="col-lg-6 mx-auto text-muted">
+                                Hasil prediksi kami mengolah data dari dua dimensi psikologis utama
+                                untuk akurasi rekomendasi yang maksimal.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <!-- MBTI -->
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="custom-block bg-white shadow-lg h-100">
+                                <a href="tes.html">
+                                    <div class="feature-icon-wrap">
+                                        <i class="bi bi-person-fill custom-icon" style="font-size:40px;"></i>
+                                    </div>
+                                    <h5 class="mb-2 text-center">Kepribadian (MBTI)</h5>
+                                    <p class="text-muted small mb-3 text-center">
+                                        Mengukur preferensi kognitif &amp; gaya kerja untuk mencocokkan
+                                        lingkungan karier yang paling nyaman bagimu.
+                                    </p>
+                                    <div class="text-center">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Minat & Bakat-->
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="custom-block bg-white shadow-lg h-100">
+                                <a href="tes.html">
+                                    <div class="feature-icon-wrap">
+                                        <i class="bi-heart-pulse custom-icon" style="font-size:40px;"></i>
+                                    </div>
+                                    <h5 class="mb-2 text-center">Tes Minat & Bakat</h5>
+                                    <p class="text-muted small mb-3 text-center">
+                                         Mengetahui bidang yang kamu sukai serta mengidentifikasi potensi alami dan kemampuan kognitif untuk mengoptimalkan jalur karier jangka panjang.
+                                    </p>
+                                    <div class="text-center">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+            </section>
+
+            <!-- ════════════ CARA KERJA ════════════ -->
+            <section class="how-it-works-section">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-12 text-center">
+                            <h6 class="text-uppercase" style="letter-spacing:2px;">Prosesnya Mudah</h6>
+                            <h2 class="mb-3">Cara <span style="color:var(--primary-color)">Kerja</span></h2>
+                            <p class="col-lg-6 mx-auto text-muted">
+                                Hanya 3 langkah sederhana untuk mendapatkan rekomendasi jurusan &amp; karir yang personal.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row g-5 justify-content-center">
+                        <!-- Step 1 -->
+                        <div class="col-lg-4 col-md-6 col-12" style="position:relative;">
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <div class="text-center mb-3 mt-2">
+                                    <i class="bi-person-lines-fill" style="font-size:36px; color:var(--secondary-color);"></i>
+                                </div>
+                                <h5 class="text-center mb-2">Buat Akun</h5>
+                                <p class="text-muted small text-center mb-0">
+                                    Daftar gratis hanya dengan email.
+                                </p>
+                            </div>
+                            <div class="step-connector"></div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="col-lg-4 col-md-6 col-12" style="position:relative;">
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <div class="text-center mb-3 mt-2">
+                                    <i class="bi-pencil-square" style="font-size:36px; color:var(--secondary-color);"></i>
+                                </div>
+                                <h5 class="text-center mb-2">Kerjakan Tes</h5>
+                                <p class="text-muted small text-center mb-0">
+                                    Jawab pertanyaan MBTI, minat dan bakat. Santai saja — tidak ada jawaban benar/salah.
+                                </p>
+                            </div>
+                            <div class="step-connector"></div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="col-lg-4 col-md-6 col-12" style="position:relative;">
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <div class="text-center mb-3 mt-2">
+                                    <i class="bi-bar-chart-line-fill" style="font-size:36px; color:var(--secondary-color);"></i>
+                                </div>
+                                <h5 class="text-center mb-2">Analisis Otomatis</h5>
+                                <p class="text-muted small text-center mb-0">
+                                    Sistem memproses ketiga skor dan mencocokkan dengan database jurusan &amp; karir.
+                                </p>
+                            </div>
+                        </div>
+
+                    <div class="text-center mt-5">
+                        <a href="tes.html" class="btn custom-btn" style="font-size:16px; padding:14px 36px;">
+                            <i class="bi-play-circle me-2"></i> Coba Sekarang — Gratis
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ════════════ KEUNGGULAN ════════════ -->
+            <section class="section-padding section-bg" id="section_3">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-12 text-center">
+                            <h6 class="text-uppercase" style="letter-spacing:2px;">Kenapa Memilih Kami?</h6>
+                            <h2 class="mb-3">Fitur <span style="color:var(--primary-color)">Unggulan</span></h2>
+                            <p class="col-lg-6 mx-auto text-muted">
+                                Platform yang dirancang khusus agar siswa bisa memilih jurusan &amp;
+                                karier dengan lebih percaya diri.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="custom-block bg-white shadow-lg h-100 text-center">
+                                <div class="feature-icon-wrap">
+                                    <i class="bi-robot custom-icon" style="font-size:28px;"></i>
+                                </div>
+                                <h5 class="mb-3">Analisis Terintegrasi</h5>
+                                <p class="text-muted mb-0 small">
+                                    Hasil MBTI, minat, dan bakat digabung dalam satu dashboard untuk
+                                    pemetaan profil yang komprehensif.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="custom-block bg-white shadow-lg h-100 text-center">
+                                <div class="feature-icon-wrap">
+                                    <i class="bi-journal-check custom-icon" style="font-size:28px;"></i>
+                                </div>
+                                <h5 class="mb-3">Rekomendasi Spesifik</h5>
+                                <p class="text-muted mb-0 small">
+                                    Daftar jurusan kuliah &amp; prospek kerja disesuaikan langsung
+                                    dengan skor unik setiap pengguna.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="custom-block bg-white shadow-lg h-100 text-center">
+                                <div class="feature-icon-wrap">
+                                    <i class="bi-shield-check custom-icon" style="font-size:28px;"></i>
+                                </div>
+                                <h5 class="mb-3">Privasi Terjamin</h5>
+                                <p class="text-muted mb-0 small">
+                                    Data hasil tesmu tidak dibagikan ke pihak ketiga. Kami menjaga
+                                    privasi setiap pengguna dengan serius.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ════════════ FAQ ════════════ -->
+            <section class="section-padding faq-section" id="section_4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-12">
+                            <div class="text-center mb-5">
+                                <h6 class="text-uppercase" style="letter-spacing:2px;">Ada Pertanyaan?</h6>
+                                <h2>Pertanyaan Umum</h2>
+                            </div>
+
+                            <div class="accordion" id="faqAccordion">
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq1"
+                                            aria-expanded="true">
+                                            Seberapa akurat prediksi ini?
+                                        </button>
+                                    </h2>
+                                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Hasil didasarkan pada kombinasi MBTI, minat, dan bakat yang telah
+                                            divalidasi secara psikologis. Platform kami menunjukkan tingkat kepuasan
+                                            94% dari pengguna yang merasa rekomendasinya relevan. Gunakan sebagai
+                                            referensi utama, bukan kepastian mutlak — karena jalur hidupmu tetap
+                                            ditentukan oleh dirimu sendiri.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq2">
+                                            Berapa lama pengerjaan tes?
+                                        </button>
+                                    </h2>
+                                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Total sekitar 20–30 menit untuk ketiga tes. Kamu bisa mengerjakan
+                                            secara bertahap karena progres tersimpan sementara di browser —
+                                            tidak perlu diselesaikan sekaligus.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq3">
+                                            Apakah bisa digunakan untuk SNBP/SNBT?
+                                        </button>
+                                    </h2>
+                                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Ya, rekomendasi jurusan kami disesuaikan dengan program studi yang
+                                            tersedia di jalur SNBP/SNBT serta kebutuhan industri saat ini agar
+                                            rekomendasinya relevan dan dapat langsung digunakan saat memilih jurusan.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq4">
+                                            Apakah tesnya gratis?
+                                        </button>
+                                    </h2>
+                                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Ya, seluruh tes sepenuhnya gratis. Kamu bisa mengerjakan ketiga tes
+                                            dan mendapatkan hasil ringkasan tanpa biaya. Laporan PDF lengkap
+                                            tersedia sebagai opsi tambahan.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq5">
+                                            Bisakah mengulang tes jika tidak puas?
+                                        </button>
+                                    </h2>
+                                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Tentu. Kamu bisa mengulang tes kapan saja dari dashboard akunmu.
+                                            Kami bahkan menyarankan untuk mengulang setelah 3–6 bulan karena
+                                            minat dan bakat bisa berkembang seiring waktu.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ════════════ CTA ════════════ -->
+            <section class="cta-section">
+                <div class="container" style="position:relative; z-index:1;">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7 col-12">
+                            <h2 class="text-white mb-3" style="font-size:38px;">
+                                Siap Menemukan Jalur Kariermu?
+                            </h2>
+                            <p class="text-white mb-5" style="font-size:18px; opacity:0.9;">
+                                Ribuan siswa sudah mendapatkan kejelasan arah. Sekarang giliran kamu —
+                                mulai tes gratis hanya dalam 25 menit.
+                            </p>
+                            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                                <a href="tes.html" class="cta-btn-white">
+                                    <i class="bi-play-circle me-2"></i> Mulai Tes Sekarang
+                                </a>
+                                <a href="#section_5" class="cta-btn-outline smoothscroll">
+                                    Hubungi Kami
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ════════════ KONTAK ════════════ -->
+            <section class="section-padding section-bg" id="section_5">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-12 text-center">
+                            <h6 class="text-uppercase" style="letter-spacing:2px;">Hubungi Kami</h6>
+                            <h2 class="mb-3">Butuh <span style="color:var(--primary-color)">Bantuan?</span></h2>
+                            <p class="col-lg-6 mx-auto text-muted">
+                                Tim kami siap membantu jika ada kendala teknis atau pertanyaan
+                                seputar hasil prediksi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-start">
+                        <!-- Info -->
+                        <div class="col-lg-5 col-12 mb-5 mb-lg-0">
+                            <h4 class="mb-4">Informasi Kontak</h4>
+
+                            <div class="contact-info-item">
+                                <div class="contact-icon-box">
+                                    <i class="bi-envelope-fill"></i>
+                                </div>
+                                <div>
+                                    <div style="font-size:13px; color:var(--p-color); margin-bottom:2px;">Email</div>
+                                    <a href="mailto:support@prediksikarir.id" style="font-size:16px; font-weight:600; color:var(--primary-color);">
+                                        support@prediksikarir.id
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <div class="contact-icon-box">
+                                    <i class="bi-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <div style="font-size:13px; color:var(--p-color); margin-bottom:2px;">WhatsApp</div>
+                                    <a href="https://wa.me/6281234567890" style="font-size:16px; font-weight:600; color:var(--primary-color);">
+                                        +62 812-3456-7890
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <p class="text-muted small">
+                                    <i class="bi-info-circle me-1"></i>
+                                    Untuk pertanyaan teknis yang mendesak, gunakan WhatsApp untuk respons lebih cepat.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Form -->
+                        <div class="col-lg-6 col-12 ms-auto">
+                            <form class="custom-form contact-form" action="#" method="post" role="form">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="form-floating">
+                                            <input type="text" name="name" id="name" class="form-control"
+                                                placeholder="Nama" required>
+                                            <label for="name">Nama Lengkap</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="form-floating">
+                                            <input type="email" name="email" id="email"
+                                                pattern="[^ @]*@[^ @]*" class="form-control"
+                                                placeholder="Email" required>
+                                            <label for="email">Alamat Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" name="subject" id="subject" class="form-control"
+                                                placeholder="Subjek" required>
+                                            <label for="subject">Subjek Pesan</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="message" name="message"
+                                                placeholder="Pesan" style="height:140px;"></textarea>
+                                            <label for="message">Pesan Kamu</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-12">
+                                        <button type="submit" class="form-control">
+                                            <i class="bi-send me-2"></i> Kirim Pesan
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </section>
 
-
-            <section class="featured-section">
-                <div class="container">
-                    <div class="row justify-content-center">
-
-                        <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-                            <div class="custom-block bg-white shadow-lg">
-                                <a href="topics-detail.html">
-                                    <div class="d-flex">
-                                        <div>
-                                            <h5 class="mb-2">Web Design</h5>
-
-                                            <p class="mb-0">When you search for free CSS templates, you will notice that TemplateMo is one of the best websites.</p>
-                                        </div>
-
-                                        <span class="badge bg-design rounded-pill ms-auto">14</span>
-                                    </div>
-
-                                    <img src="images/topics/undraw_Remote_design_team_re_urdx.png" class="custom-block-image img-fluid" alt="">
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-12">
-                            <div class="custom-block custom-block-overlay">
-                                <div class="d-flex flex-column h-100">
-                                    <img src="images/businesswoman-using-tablet-analysis.jpg" class="custom-block-image img-fluid" alt="">
-
-                                    <div class="custom-block-overlay-text d-flex">
-                                        <div>
-                                            <h5 class="text-white mb-2">Finance</h5>
-
-                                            <p class="text-white">Topic Listing Template includes homepage, listing page, detail page, and contact page. You can feel free to edit and adapt for your CMS requirements.</p>
-
-                                            <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
-                                        </div>
-
-                                        <span class="badge bg-finance rounded-pill ms-auto">25</span>
-                                    </div>
-
-                                    <div class="social-share d-flex">
-                                        <p class="text-white me-4">Share:</p>
-
-                                        <ul class="social-icon">
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-twitter"></a>
-                                            </li>
-
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-facebook"></a>
-                                            </li>
-
-                                            <li class="social-icon-item">
-                                                <a href="#" class="social-icon-link bi-pinterest"></a>
-                                            </li>
-                                        </ul>
-
-                                        <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
-                                    </div>
-
-                                    <div class="section-overlay"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="explore-section section-padding" id="section_2">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-12 text-center">
-                            <h2 class="mb-4">Browse Topics</h1>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="container-fluid">
-                    <div class="row">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="design-tab" data-bs-toggle="tab" data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane" aria-selected="true">Design</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="marketing-tab" data-bs-toggle="tab" data-bs-target="#marketing-tab-pane" type="button" role="tab" aria-controls="marketing-tab-pane" aria-selected="false">Marketing</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="finance-tab" data-bs-toggle="tab" data-bs-target="#finance-tab-pane" type="button" role="tab" aria-controls="finance-tab-pane" aria-selected="false">Finance</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="music-tab" data-bs-toggle="tab" data-bs-target="#music-tab-pane" type="button" role="tab" aria-controls="music-tab-pane" aria-selected="false">Music</button>
-                            </li>
-
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="education-tab" data-bs-toggle="tab" data-bs-target="#education-tab-pane" type="button" role="tab" aria-controls="education-tab-pane" aria-selected="false">Education</button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-12">
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Web Design</h5>
-
-                                                            <p class="mb-0">Topic Listing Template based on Bootstrap 5</p>
-                                                        </div>
-
-                                                        <span class="badge bg-design rounded-pill ms-auto">14</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Remote_design_team_re_urdx.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Graphic</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-design rounded-pill ms-auto">75</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Redesign_feedback_re_jvm0.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Logo Design</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-design rounded-pill ms-auto">100</span>
-                                                    </div>
-
-                                                    <img src="images/topics/colleagues-working-cozy-office-medium-shot.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel" aria-labelledby="marketing-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                                <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
-                                                        <div class="d-flex">
-                                                            <div>
-                                                                <h5 class="mb-2">Advertising</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                            </div>
-
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">30</span>
-                                                        </div>
-
-                                                        <img src="images/topics/undraw_online_ad_re_ol62.png" class="custom-block-image img-fluid" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                                <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
-                                                        <div class="d-flex">
-                                                            <div>
-                                                                <h5 class="mb-2">Video Content</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                            </div>
-
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">65</span>
-                                                        </div>
-
-                                                        <img src="images/topics/undraw_Group_video_re_btu7.png" class="custom-block-image img-fluid" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-md-6 col-12">
-                                                <div class="custom-block bg-white shadow-lg">
-                                                    <a href="topics-detail.html">
-                                                        <div class="d-flex">
-                                                            <div>
-                                                                <h5 class="mb-2">Viral Tweet</h5>
-
-                                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                            </div>
-
-                                                            <span class="badge bg-advertising rounded-pill ms-auto">50</span>
-                                                        </div>
-
-                                                        <img src="images/topics/undraw_viral_tweet_gndb.png" class="custom-block-image img-fluid" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                  </div>
-
-                                <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab" tabindex="0">   <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Investment</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-finance rounded-pill ms-auto">30</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Finance_re_gnv2.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="custom-block custom-block-overlay">
-                                                <div class="d-flex flex-column h-100">
-                                                    <img src="images/businesswoman-using-tablet-analysis-graph-company-finance-strategy-statistics-success-concept-planning-future-office-room.jpg" class="custom-block-image img-fluid" alt="">
-
-                                                    <div class="custom-block-overlay-text d-flex">
-                                                        <div>
-                                                            <h5 class="text-white mb-2">Finance</h5>
-
-                                                            <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis</p>
-
-                                                            <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
-                                                        </div>
-
-                                                        <span class="badge bg-finance rounded-pill ms-auto">25</span>
-                                                    </div>
-
-                                                    <div class="social-share d-flex">
-                                                        <p class="text-white me-4">Share:</p>
-
-                                                        <ul class="social-icon">
-                                                            <li class="social-icon-item">
-                                                                <a href="#" class="social-icon-link bi-twitter"></a>
-                                                            </li>
-
-                                                            <li class="social-icon-item">
-                                                                <a href="#" class="social-icon-link bi-facebook"></a>
-                                                            </li>
-
-                                                            <li class="social-icon-item">
-                                                                <a href="#" class="social-icon-link bi-pinterest"></a>
-                                                            </li>
-                                                        </ul>
-
-                                                        <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
-                                                    </div>
-
-                                                    <div class="section-overlay"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Composing Song</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Compose_music_re_wpiw.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Online Music</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-music rounded-pill ms-auto">45</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_happy_music_g6wc.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-md-6 col-12">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Podcast</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-music rounded-pill ms-auto">20</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Podcast_audience_re_4i5q.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="education-tab-pane" role="tabpanel" aria-labelledby="education-tab" tabindex="0">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Graduation</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-education rounded-pill ms-auto">80</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Graduation_re_gthn.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6 col-md-6 col-12">
-                                            <div class="custom-block bg-white shadow-lg">
-                                                <a href="topics-detail.html">
-                                                    <div class="d-flex">
-                                                        <div>
-                                                            <h5 class="mb-2">Educator</h5>
-
-                                                            <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                        </div>
-
-                                                        <span class="badge bg-education rounded-pill ms-auto">75</span>
-                                                    </div>
-
-                                                    <img src="images/topics/undraw_Educator_re_ju47.png" class="custom-block-image img-fluid" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="timeline-section section-padding" id="section_3">
-                <div class="section-overlay"></div>
-
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-12 text-center">
-                            <h2 class="text-white mb-4">How does it work?</h1>
-                        </div>
-
-                        <div class="col-lg-10 col-12 mx-auto">
-                            <div class="timeline-container">
-                                <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
-                                    <div class="list-progress">
-                                        <div class="inner"></div>
-                                    </div>
-
-                                    <li>
-                                        <h4 class="text-white mb-3">Search your favourite topic</h4>
-
-                                        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, cumque magnam? Sequi, cupiditate quibusdam alias illum sed esse ad dignissimos libero sunt, quisquam numquam aliquam? Voluptas, accusamus omnis?</p>
-
-                                        <div class="icon-holder">
-                                          <i class="bi-search"></i>
-                                        </div>
-                                    </li>
-                                    
-                                    <li>
-                                        <h4 class="text-white mb-3">Bookmark &amp; Keep it for yourself</h4>
-
-                                        <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint animi necessitatibus aperiam repudiandae nam omnis est vel quo, nihil repellat quia velit error modi earum similique odit labore. Doloremque, repudiandae?</p>
-
-                                        <div class="icon-holder">
-                                          <i class="bi-bookmark"></i>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <h4 class="text-white mb-3">Read &amp; Enjoy</h4>
-
-                                        <p class="text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi vero quisquam, rem assumenda similique voluptas distinctio, iste est hic eveniet debitis ut ducimus beatae id? Quam culpa deleniti officiis autem?</p>
-
-                                        <div class="icon-holder">
-                                          <i class="bi-book"></i>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-12 text-center mt-5">
-                            <p class="text-white">
-                                Want to learn more?
-                                <a href="#" class="btn custom-btn custom-border-btn ms-3">Check out Youtube</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="faq-section section-padding" id="section_4">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-6 col-12">
-                            <h2 class="mb-4">Frequently Asked Questions</h2>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="col-lg-5 col-12">
-                            <img src="images/faq_graphic.jpg" class="img-fluid" alt="FAQs">
-                        </div>
-
-                        <div class="col-lg-6 col-12 m-auto">
-                            <div class="accordion" id="accordionExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        What is Topic Listing?
-                                        </button>
-                                    </h2>
-
-                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            Topic Listing is free Bootstrap 5 CSS template. <strong>You are not allowed to redistribute this template</strong> on any other template collection website without our permission. Please contact TemplateMo for more detail. Thank you.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        How to find a topic?
-                                    </button>
-                                    </h2>
-
-                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            You can search on Google with <strong>keywords</strong> such as templatemo portfolio, templatemo one-page layouts, photography, digital marketing, etc.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Does it need to paid?
-                                    </button>
-                                    </h2>
-
-                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="contact-section section-padding section-bg" id="section_5">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-12 col-12 text-center">
-                            <h2 class="mb-5">Get in touch</h2>
-                        </div>
-
-                        <div class="col-lg-5 col-12 mb-4 mb-lg-0">
-                            <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.065641062665!2d-122.4230416990949!3d37.80335401520422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858127459fabad%3A0x808ba520e5e9edb7!2sFrancisco%20Park!5e1!3m2!1sen!2sth!4v1684340239744!5m2!1sen!2sth" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 col-12 mb-3 mb-lg- mb-md-0 ms-auto">
-                            <h4 class="mb-3">Head office</h4>
-
-                            <p>Bay St &amp;, Larkin St, San Francisco, CA 94109, United States</p>
-
-                            <hr>
-
-                            <p class="d-flex align-items-center mb-1">
-                                <span class="me-2">Phone</span>
-
-                                <a href="tel: 305-240-9671" class="site-footer-link">
-                                    305-240-9671
-                                </a>
-                            </p>
-
-                            <p class="d-flex align-items-center">
-                                <span class="me-2">Email</span>
-
-                                <a href="mailto:info@company.com" class="site-footer-link">
-                                    info@company.com
-                                </a>
-                            </p>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 col-12 mx-auto">
-                            <h4 class="mb-3">Dubai office</h4>
-
-                            <p>Burj Park, Downtown Dubai, United Arab Emirates</p>
-
-                            <hr>
-
-                            <p class="d-flex align-items-center mb-1">
-                                <span class="me-2">Phone</span>
-
-                                <a href="tel: 110-220-3400" class="site-footer-link">
-                                    110-220-3400
-                                </a>
-                            </p>
-
-                            <p class="d-flex align-items-center">
-                                <span class="me-2">Email</span>
-
-                                <a href="mailto:info@company.com" class="site-footer-link">
-                                    info@company.com
-                                </a>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
         </main>
 
-<footer class="site-footer section-padding">
-            <div class="container">
-                <div class="row">
 
-                    <div class="col-lg-3 col-12 mb-4 pb-2">
-                        <a class="navbar-brand mb-2" href="index.html">
-                            <i class="bi-back"></i>
-                            <span>Topic</span>
-                        </a>
-                    </div>
+        <!-- ════════════ FOOTER ════════════ -->
+        <footer class="site-footer section-padding">
 
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <h6 class="site-footer-title mb-3">Resources</h6>
+            <!-- Konten utama footer -->
+            <div class="footer-main">
+                <div class="container">
+                    <div class="row align-items-center g-4">
 
-                        <ul class="site-footer-links">
-                            <li class="site-footer-link-item">
-                                <a href="#" class="site-footer-link">Home</a>
-                            </li>
-
-                            <li class="site-footer-link-item">
-                                <a href="#" class="site-footer-link">How it works</a>
-                            </li>
-
-                            <li class="site-footer-link-item">
-                                <a href="#" class="site-footer-link">FAQs</a>
-                            </li>
-
-                            <li class="site-footer-link-item">
-                                <a href="#" class="site-footer-link">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
-                        <h6 class="site-footer-title mb-3">Information</h6>
-
-                        <p class="text-white d-flex mb-1">
-                            <a href="tel: 305-240-9671" class="site-footer-link">
-                                305-240-9671
+                        <!-- Kolom 1: Branding & Deskripsi -->
+                        <div class="col-lg-5 col-12">
+                            <a class="navbar-brand d-flex align-items-center mb-3" href="index.html">
+                                <i class="bi-compass me-2"></i>
+                                <span>PrediksiKarir</span>
                             </a>
-                        </p>
+                            <p class="text-muted mb-0" style="max-width: 340px; font-size: 14px; line-height: 1.7;">
+                                Platform prediksi jurusan &amp; karir berbasis data psikologis untuk membantu siswa memilih masa depan dengan lebih percaya diri.
+                            </p>
+                        </div>
 
-                        <p class="text-white d-flex">
-                            <a href="mailto:info@company.com" class="site-footer-link">
-                                info@company.com
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            English</button>
-
-                            <ul class="dropdown-menu">
-                                <li><button class="dropdown-item" type="button">Thai</button></li>
-
-                                <li><button class="dropdown-item" type="button">Myanmar</button></li>
-
-                                <li><button class="dropdown-item" type="button">Arabic</button></li>
+                        <!-- Kolom 2: Navigasi -->
+                        <div class="col-lg-3 col-6">
+                            <h6 class="site-footer-title">Navigasi</h6>
+                            <ul class="site-footer-links">
+                                <li class="site-footer-link-item"><a href="#section_1" class="site-footer-link">Beranda</a></li>
+                                <li class="site-footer-link-item"><a href="#section_2" class="site-footer-link">Metode Tes</a></li>
+                                <li class="site-footer-link-item"><a href="#section_3" class="site-footer-link">Keunggulan</a></li>
+                                <li class="site-footer-link-item"><a href="#" class="site-footer-link">Mulai Tes</a></li>
                             </ul>
                         </div>
 
-                        <p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 Topic Listing Center. All rights reserved.
-                        <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-                        
-                    </div>
+                        <!-- Kolom 3: Logo Universitas Mulawarman -->
+                        <div class="col-lg-4 col-6 d-flex justify-content-center justify-content-lg-end">
+                            <img src="images/logo_unmul.jpg"
+                                 alt="Logo Universitas Mulawarman"
+                                 class="footer-univ-logo">
+                        </div>
 
+                    </div>
                 </div>
             </div>
-        </footer>
 
+            <!-- Garis pemisah -->
+            <div class="footer-divider"></div>
+
+            <!-- Bar copyright -->
+            <div class="footer-bottom">
+                <div class="container">
+                    <p class="copyright-text">© 2026 PrediksiKarir. All rights reserved.</p>
+                    <p class="copyright-text">Universitas Mulawarman</p>
+                </div>
+            </div>
+
+        </footer>
 
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
