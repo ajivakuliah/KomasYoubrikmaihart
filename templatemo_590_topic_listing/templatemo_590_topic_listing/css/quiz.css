@@ -1,0 +1,706 @@
+/* =========================================
+   KarirMatch — Main Stylesheet
+   Mengikuti style TemplateMo Topic Listing
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* ----------------------------------------
+   CUSTOM PROPERTIES (VARIABLES)
+---------------------------------------- */
+:root {
+  --white:          #ffffff;
+  --primary:        #13547a;
+  --secondary:      #80d0c7;
+  --section-bg:     #f0f8ff;
+  --btn-bg:         #80d0c7;
+  --btn-hover:      #13547a;
+  --dark:           #000000;
+  --p-color:        #717275;
+  --border:         #7fffd4;
+  --border-light:   #d0e8f5;
+
+  --radius-lg:      100px;
+  --radius-md:      20px;
+  --radius-sm:      10px;
+
+  --font-body:      'Open Sans', sans-serif;
+  --font-title:     'Montserrat', sans-serif;
+
+  --shadow-card:    0 4px 20px rgba(19, 84, 122, 0.08);
+  --shadow-progress: 0 4px 20px rgba(19, 84, 122, 0.12);
+}
+
+/* ----------------------------------------
+   BASE RESET
+---------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+/* ----------------------------------------
+   LAYOUT
+---------------------------------------- */
+.app {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+.page {
+  animation: fadeUp 0.35s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.flex-gap {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.divider {
+  height: 1px;
+  background: #edf7f6;
+  margin: 20px 0;
+}
+
+/* ----------------------------------------
+   HERO SECTION
+---------------------------------------- */
+.hero {
+  background: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  padding: 48px 32px 80px;
+  text-align: center;
+  margin: 0 -16px 0;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.hero h1 {
+  font-family: var(--font-title);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+/* ----------------------------------------
+   PROGRESS BAR
+---------------------------------------- */
+.progress-wrap {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-progress);
+  padding: 20px 28px;
+  margin: -32px 0 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.progress-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--border-light);
+  background: var(--white);
+  color: var(--p-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.3s;
+  z-index: 1;
+  position: relative;
+}
+
+.step-circle.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+  box-shadow: 0 0 0 4px rgba(19, 84, 122, 0.15);
+}
+
+.step-circle.done {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: var(--white);
+}
+
+.step-label {
+  font-size: 11px;
+  color: var(--p-color);
+  margin-top: 5px;
+  font-family: var(--font-title);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.step-label.active {
+  color: var(--primary);
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: var(--border-light);
+  margin-top: -18px;
+  transition: background 0.3s;
+}
+
+.step-line.done {
+  background: var(--secondary);
+}
+
+/* ----------------------------------------
+   CARDS
+---------------------------------------- */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 32px;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.card-title {
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.card-sub {
+  color: var(--p-color);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.highlight-card {
+  background: var(--section-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid #c0dff0;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--primary);
+  line-height: 1.7;
+}
+
+/* ----------------------------------------
+   BUTTONS
+---------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-title);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--btn-bg);
+  color: var(--white);
+  border-color: var(--btn-bg);
+}
+
+.btn-primary:hover {
+  background: var(--btn-hover);
+  border-color: var(--btn-hover);
+}
+
+.btn-primary:disabled,
+.btn-primary.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--btn-bg);
+  border-color: var(--btn-bg);
+}
+
+.btn-outline:hover {
+  background: var(--btn-bg);
+  color: var(--white);
+}
+
+.btn-light {
+  background: var(--section-bg);
+  color: var(--primary);
+  border-color: transparent;
+}
+
+.btn-light:hover {
+  background: #dceef7;
+}
+
+.btn-ext {
+  background: var(--primary);
+  color: var(--white);
+  border: 2px solid var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-title);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-ext:hover {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: var(--white);
+}
+
+.reset-btn {
+  background: none;
+  border: none;
+  color: var(--p-color);
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 auto;
+  transition: color 0.2s;
+}
+
+.reset-btn:hover {
+  color: var(--primary);
+}
+
+/* ----------------------------------------
+   MBTI GRID
+---------------------------------------- */
+.mbti-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.mbti-card {
+  padding: 14px 8px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-light);
+  background: var(--white);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.mbti-card:hover {
+  border-color: var(--secondary);
+  background: var(--section-bg);
+  transform: translateY(-2px);
+}
+
+.mbti-card.selected {
+  border-color: var(--primary);
+  background: linear-gradient(135deg, #13547a, #1e7099);
+  color: var(--white);
+}
+
+.mbti-type {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.mbti-name {
+  font-size: 10px;
+  color: var(--p-color);
+  margin-top: 3px;
+}
+
+.mbti-card.selected .mbti-name {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mbti-card.selected .mbti-type {
+  color: var(--white);
+}
+
+/* ----------------------------------------
+   FILTER / TAGS
+---------------------------------------- */
+.filter-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.ftag {
+  background: var(--section-bg);
+  color: var(--primary);
+  border-radius: var(--radius-lg);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-title);
+  border: 1px solid #c0dff0;
+}
+
+.match-alert {
+  background: var(--section-bg);
+  border-left: 4px solid var(--secondary);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--primary);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+/* ----------------------------------------
+   SECTION HEADING (Accent bar)
+---------------------------------------- */
+.sec-head {
+  font-family: var(--font-title);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--primary);
+  margin: 20px 0 10px;
+  border-left: 3px solid var(--secondary);
+  padding-left: 10px;
+}
+
+/* ----------------------------------------
+   RIASEC QUIZ
+---------------------------------------- */
+.riasec-q {
+  padding: 18px 0;
+  border-bottom: 1px solid #edf7f6;
+}
+
+.riasec-q:last-child {
+  border-bottom: none;
+}
+
+.q-text {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-title);
+  color: var(--dark);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.scale-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scale-lbl {
+  font-size: 11px;
+  color: var(--p-color);
+  min-width: 58px;
+  font-family: var(--font-title);
+  font-weight: 600;
+}
+
+.scale-lbl.r {
+  text-align: right;
+}
+
+.scale-btns {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
+
+.scale-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-light);
+  background: var(--white);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-title);
+  color: var(--p-color);
+  transition: all 0.2s;
+}
+
+.scale-btn:hover {
+  border-color: var(--secondary);
+  color: var(--primary);
+}
+
+.scale-btn.sel {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: var(--white);
+}
+
+/* ----------------------------------------
+   RESULT HERO
+---------------------------------------- */
+.result-hero {
+  background: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.result-hero .badge-mbti {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 5px 16px;
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.result-hero h2 {
+  font-family: var(--font-title);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--white);
+}
+
+.result-hero p {
+  font-size: 13px;
+  opacity: 0.85;
+  line-height: 1.6;
+  color: var(--white);
+}
+
+/* RIASEC Bars */
+.rbar-wrap {
+  margin-top: 16px;
+}
+
+.rbar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.rbar-lbl {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-title);
+  min-width: 110px;
+  color: var(--white);
+}
+
+.rbar-bg {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.rbar-fill {
+  height: 100%;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  transition: width 0.8s ease;
+}
+
+.rbar-pct {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ----------------------------------------
+   RECOMMENDATION CARDS
+---------------------------------------- */
+.rec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.rec-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+}
+
+.rec-card h4 {
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rec-tag {
+  display: inline-block;
+  background: var(--section-bg);
+  color: var(--primary);
+  border-radius: var(--radius-lg);
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-title);
+  margin: 3px;
+  border: 1px solid #c0dff0;
+}
+
+/* ----------------------------------------
+   TOP CAREER CARDS
+---------------------------------------- */
+.career-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.career-card {
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-light);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+}
+
+.career-card:hover {
+  border-color: var(--secondary);
+  box-shadow: 0 4px 12px rgba(128, 208, 199, 0.2);
+}
+
+.career-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--section-bg);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.career-name {
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+/* ----------------------------------------
+   RESPONSIVE
+---------------------------------------- */
+@media screen and (max-width: 500px) {
+  .mbti-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rec-grid,
+  .career-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 36px 20px 64px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .progress-wrap {
+    padding: 16px;
+  }
+}

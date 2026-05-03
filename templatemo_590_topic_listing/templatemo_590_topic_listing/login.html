@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Login dan Registrasi - Web Prediksi Jurusan & Karir berbasis tes MBTI">
+        <meta name="author" content="Prediksi Karir         <title>Login & Registrasi - PrediksiKarir</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+        <link rel="stylesheet" href="css/login.css">
+    </head>
+    <body>
+
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+
+        <div class="auth-wrapper">
+            <div class="auth-card">
+
+                <!-- LOGIN FORM -->
+                <div id="loginForm" class="auth-panel active">
+                    <div class="auth-brand">
+                        <span class="brand-name">PrediksiKarir</span>
+                    </div>
+                    <h1 class="auth-title">Selamat Datang</h1>
+                    <p class="auth-subtitle">Lanjutkan perjalanan menemukan karir impianmu</p>
+
+                    <div id="loginAlert" class="alert hidden" role="alert">
+                        <i class="bi bi-info-circle-fill"></i>
+                        <span id="loginAlertText"></span>
+                    </div>
+
+                    <form id="loginFormElement" novalidate>
+                        <div class="field-group">
+                            <label class="field-label" for="loginEmail">
+                                <i class="bi bi-envelope"></i> Email
+                            </label>
+                            <input type="email" class="field-input" id="loginEmail" placeholder="contoh@email.com" required>
+                            <div class="field-error" id="loginEmailError"></div>
+                        </div>
+
+                        <div class="field-group">
+                            <label class="field-label" for="loginPassword">
+                                <i class="bi bi-lock"></i> Password
+                            </label>
+                            <div class="input-icon-wrap">
+                                <input type="password" class="field-input" id="loginPassword" placeholder="Masukkan password Anda" required>
+                                <button type="button" class="toggle-eye" onclick="togglePassword('loginPassword', this)" aria-label="Toggle password">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <div class="field-error" id="loginPasswordError"></div>
+                        </div>
+
+                        <div class="row-between">
+                            <label class="check-label">
+                                <input type="checkbox" id="rememberMe" class="check-input">
+                                <span class="check-box"></span>
+                                Ingat saya
+                            </label>
+                            <a href="#" class="link-muted">Lupa password?</a>
+                        </div>
+
+                        <button type="button" class="btn-primary" onclick="handleLogin()">
+                            <span>Masuk</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </form>
+
+                    <div class="toggle-hint">
+                        <span>Belum punya akun?</span>
+                        <button type="button" class="link-toggle" onclick="switchPanel('register')">Buat akun baru</button>
+                    </div>
+                </div>
+
+                <!-- REGISTER FORM -->
+                <div id="registerForm" class="auth-panel">
+                    <div class="auth-brand">
+                        <span class="brand-name">PrediksiKarir</span>
+                    </div>
+                    <h1 class="auth-title">Buat Akun Baru</h1>
+                    <p class="auth-subtitle">Mulai temukan karir yang tepat untukmu</p>
+
+                    <div id="registerAlert" class="alert hidden" role="alert">
+                        <i class="bi bi-info-circle-fill"></i>
+                        <span id="registerAlertText"></span>
+                    </div>
+
+                    <form id="registerFormElement" novalidate>
+                        <div class="field-group">
+                            <label class="field-label" for="registerName">
+                                <i class="bi bi-person"></i> Nama Lengkap
+                            </label>
+                            <input type="text" class="field-input" id="registerName" placeholder="Nama lengkap Anda" required>
+                            <div class="field-error" id="registerNameError"></div>
+                        </div>
+
+                        <div class="field-group">
+                            <label class="field-label" for="registerEmail">
+                                <i class="bi bi-envelope"></i> Email
+                            </label>
+                            <input type="email" class="field-input" id="registerEmail" placeholder="contoh@email.com" required>
+                            <div class="field-error" id="registerEmailError"></div>
+                        </div>
+
+                        <div class="field-group">
+                            <label class="field-label" for="registerPhone">
+                                <i class="bi bi-phone"></i> No. Telepon
+                            </label>
+                            <input type="tel" class="field-input" id="registerPhone" placeholder="08XXXXXXXXXX" required>
+                            <div class="field-error" id="registerPhoneError"></div>
+                        </div>
+
+                        <div class="field-group">
+                            <label class="field-label" for="registerClass">
+                                <i class="bi bi-book"></i> Kelas
+                            </label>
+                            <select class="field-input" id="registerClass" required>
+                                <option value="">-- Pilih Kelas --</option>
+                                <option value="10">Kelas 10</option>
+                                <option value="11">Kelas 11</option>
+                                <option value="12">Kelas 12</option>
+                            </select>
+                            <div class="field-error" id="registerClassError"></div>
+                        </div>
+
+                        <div class="field-row">
+                            <div class="field-group">
+                                <label class="field-label" for="registerPassword">
+                                    <i class="bi bi-lock"></i> Password
+                                </label>
+                                <div class="input-icon-wrap">
+                                    <input type="password" class="field-input" id="registerPassword" placeholder="Min. 6 karakter" required>
+                                    <button type="button" class="toggle-eye" onclick="togglePassword('registerPassword', this)" aria-label="Toggle password">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="field-error" id="registerPasswordError"></div>
+                            </div>
+
+                            <div class="field-group">
+                                <label class="field-label" for="registerPasswordConfirm">
+                                    <i class="bi bi-lock-fill"></i> Konfirmasi
+                                </label>
+                                <div class="input-icon-wrap">
+                                    <input type="password" class="field-input" id="registerPasswordConfirm" placeholder="Ulangi password" required>
+                                    <button type="button" class="toggle-eye" onclick="togglePassword('registerPasswordConfirm', this)" aria-label="Toggle password">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="field-error" id="registerPasswordConfirmError"></div>
+                            </div>
+                        </div>
+
+                        <label class="check-label terms-label">
+                            <input type="checkbox" id="termsAgree" class="check-input" required>
+                            <span class="check-box"></span>
+                            <span>Saya setuju dengan <a href="#" class="link-accent">Kebijakan Privasi</a> dan <a href="#" class="link-accent">Syarat &amp; Ketentuan</a></span>
+                        </label>
+                        <div class="field-error" id="termsError"></div>
+
+                        <button type="button" class="btn-primary" onclick="handleRegister()">
+                            <span>Buat Akun</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </form>
+
+                    <div class="toggle-hint">
+                        <span>Sudah punya akun?</span>
+                        <button type="button" class="link-toggle" onclick="switchPanel('login')">Masuk di sini</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="js/login.js"></script>
+    </body>
+</html>
