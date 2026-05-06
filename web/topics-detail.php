@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Topic Listing Contact Page</title>
+        <title>Topic Detail Page</title>
 
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,13 +30,13 @@ https://templatemo.com/tm-590-topic-listing
 -->
     </head>
     
-    <body class="topics-listing-page" id="top">
+    <body id="top">
 
         <main>
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="index.php">
                         <i class="bi-back"></i>
                         <span>Topic</span>
                     </a>
@@ -52,32 +52,32 @@ https://templatemo.com/tm-590-topic-listing
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-lg-5 me-lg-auto">
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_1">Home</a>
+                                <a class="nav-link click-scroll" href="index.php#section_1">Home</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_2">Browse Topics</a>
+                                <a class="nav-link click-scroll" href="index.php#section_2">Browse Topics</a>
                             </li>
     
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_3">How it works</a>
+                                <a class="nav-link click-scroll" href="index.php#section_3">How it works</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_4">FAQs</a>
+                                <a class="nav-link click-scroll" href="index.php#section_4">FAQs</a>
                             </li>
     
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="index.html#section_5">Contact</a>
+                                <a class="nav-link click-scroll" href="index.php#section_5">Contact</a>
                             </li>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
 
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
+                                    <li><a class="dropdown-item" href="topics-listing.php">Topics Listing</a></li>
 
-                                    <li><a class="dropdown-item active" href="contact.html">Contact Form</a></li>
+                                    <li><a class="dropdown-item" href="contact.php">Contact Form</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -88,22 +88,34 @@ https://templatemo.com/tm-590-topic-listing
                     </div>
                 </div>
             </nav>
-
+            
 
             <header class="site-header d-flex flex-column justify-content-center align-items-center">
                 <div class="container">
-                    <div class="row align-items-center">
+                    <div class="row justify-content-center align-items-center">
 
-                        <div class="col-lg-5 col-12">
+                        <div class="col-lg-5 col-12 mb-5">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
+                                    <li class="breadcrumb-item"><a href="index.php">Homepage</a></li>
 
-                                    <li class="breadcrumb-item active" aria-current="page">Contact Form</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Web Design</li>
                                 </ol>
                             </nav>
 
-                            <h2 class="text-white">Contact Form</h2>
+                            <h2 class="text-white">Introduction to <br> Web Design 101</h2>
+
+                            <div class="d-flex align-items-center mt-5">
+                                <a href="#topics-detail" class="btn custom-btn custom-border-btn smoothscroll me-4">Read More</a>
+
+                                <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 col-12">
+                            <div class="topics-detail-block bg-white shadow-lg">
+                                <img src="images/topics/undraw_Remote_design_team_re_urdx.png" class="topics-detail-block-image img-fluid">
+                            </div>
                         </div>
 
                     </div>
@@ -111,74 +123,70 @@ https://templatemo.com/tm-590-topic-listing
             </header>
 
 
-            <section class="section-padding section-bg">
+            <section class="topics-detail-section section-padding" id="topics-detail">
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-12 col-12">
-                            <h3 class="mb-4 pb-2">We'd love to hear from you</h3>
+                        <div class="col-lg-8 col-12 m-auto">
+                            <h3 class="mb-4">Introduction to Web Design</h3>
+
+                            <p>So how can you stand out, do something unique and interesting, build an online business, and get paid enough to change life. Please visit TemplateMo website to download free website templates.</p>
+
+                            <p><strong>There are so many ways to make money online</strong>. Below are several platforms you can use to find success. Keep in mind that there is no one path everyone can take. If that were the case, everyone would have a million dollars.</p>
+
+                            <blockquote>
+                                Freelancing your skills isn’t going to make you a millionaire overnight.
+                            </blockquote>
+
+                            <div class="row my-4">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <img src="images/businesswoman-using-tablet-analysis.jpg" class="topics-detail-block-image img-fluid">
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-12 mt-4 mt-lg-0 mt-md-0">
+                                    <img src="images/colleagues-working-cozy-office-medium-shot.jpg" class="topics-detail-block-image img-fluid">
+                                </div>
+                            </div>
+
+                            <p>Most people start with freelancing skills they already have as a side hustle to build up income. This extra cash can be used for a vacation, to boost up savings, investing, build business.</p>
                         </div>
 
-                        <div class="col-lg-6 col-12">
-                            <form action="#" method="post" class="custom-form contact-form" role="form">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                        <div class="form-floating">
-                                            <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="">
-                                            
-                                            <label for="floatingInput">Name</label>
-                                        </div>
-                                    </div>
+                    </div>
+                </div>
+            </section>
 
-                                    <div class="col-lg-6 col-md-6 col-12"> 
-                                        <div class="form-floating">
-                                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">
-                                            
-                                            <label for="floatingInput">Email address</label>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-lg-12 col-12">
-                                        <div class="form-floating">
-                                            <input type="text" name="subject" id="name" class="form-control" placeholder="Name" required="">
-                                            
-                                            <label for="floatingInput">Subject</label>
-                                        </div>
+            <section class="section-padding section-bg">
+                <div class="container">
+                    <div class="row justify-content-center">
 
-                                        <div class="form-floating">
-                                            <textarea class="form-control" id="message" name="message" placeholder="Tell me about the project"></textarea>
-                                            
-                                            <label for="floatingTextarea">Tell me about the project</label>
-                                        </div>
-                                    </div>
+                        <div class="col-lg-5 col-12">
+                            <img src="images/rear-view-young-college-student.jpg" class="newsletter-image img-fluid" alt="">
+                        </div>
 
-                                    <div class="col-lg-4 col-12 ms-auto">
-                                        <button type="submit" class="form-control">Submit</button>
-                                    </div>
+                        <div class="col-lg-5 col-12 subscribe-form-wrap d-flex justify-content-center align-items-center">
+                            <form class="custom-form subscribe-form" action="#" method="post" role="form">
+                                <h4 class="mb-4 pb-2">Get Newsletter</h4>
 
+                                <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email Address" required="">
+
+                                <div class="col-lg-12 col-12">
+                                    <button type="submit" class="form-control">Subscribe</button>
                                 </div>
                             </form>
-                        </div>
-
-                        <div class="col-lg-5 col-12 mx-auto mt-5 mt-lg-0">
-                            <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.065641062665!2d-122.4230416990949!3d37.80335401520422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858127459fabad%3A0x808ba520e5e9edb7!2sFrancisco%20Park!5e1!3m2!1sen!2sth!4v1684340239744!5m2!1sen!2sth" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-                            <h5 class="mt-4 mb-2">Topic Listing Center</h5>
-
-                            <p>Bay St &amp;, Larkin St, San Francisco, CA 94109, United States</p>
                         </div>
 
                     </div>
                 </div>
             </section>
         </main>
-
+		
         <footer class="site-footer section-padding">
             <div class="container">
                 <div class="row">
 
                     <div class="col-lg-3 col-12 mb-4 pb-2">
-                        <a class="navbar-brand mb-2" href="index.html">
+                        <a class="navbar-brand mb-2" href="index.php">
                             <i class="bi-back"></i>
                             <span>Topic</span>
                         </a>

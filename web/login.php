@@ -1,3 +1,22 @@
+<?php
+require_once 'config.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        echo "Login berhasil";
+    } else {
+        echo "Login gagal";
+    }
+}
+?>
+
 <!doctype html>
 <html lang="id">
     <head>
@@ -66,7 +85,7 @@
                             <a href="#" class="link-muted">Lupa password?</a>
                         </div>
 
-                        <button type="button" class="btn-primary" onclick="handleLogin()">
+                        <button type="submit" class="btn-primary" onclick="handleLogin()">
                             <span>Masuk</span>
                             <i class="bi bi-arrow-right"></i>
                         </button>
@@ -164,7 +183,7 @@
                         </label>
                         <div class="field-error" id="termsError"></div>
 
-                        <button type="button" class="btn-primary" onclick="handleRegister()">
+                        <button type="submit" class="btn-primary" onclick="handleRegister()">
                             <span>Buat Akun</span>
                             <i class="bi bi-arrow-right"></i>
                         </button>

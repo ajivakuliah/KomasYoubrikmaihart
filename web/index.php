@@ -231,13 +231,13 @@
             <!-- ════════════ NAVBAR ════════════ -->
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="index.php">
                         <i class="bi-compass"></i>
                         <span>Prediksi<span style="color:var(--secondary-color)">Karir</span></span>
                     </a>
 
                     <div class="d-lg-none ms-auto me-4">
-                        <a href="login.html" class="navbar-icon bi-person smoothscroll"></a>
+                        <a href="login.php" class="navbar-icon bi-person smoothscroll"></a>
                     </div>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -265,7 +265,7 @@
                         </ul>
 
                         <div class="d-none d-lg-block">
-                            <a href="login.html" class="btn custom-btn" style="font-size:14px; padding: 8px 20px;">
+                            <a href="login.php" class="btn custom-btn" style="font-size:14px; padding: 8px 20px;">
                                 <i class="bi-play-circle me-1"></i> Mulai Tes
                             </a>
                         </div>
@@ -298,10 +298,10 @@
                             </p>
 
                             <div class="d-flex flex-wrap gap-3">
-                                <a href="login.html" class="btn custom-btn" style="font-size:16px; padding:12px 28px;">
+                                <a href="login.php" class="btn custom-btn" style="font-size:16px; padding:12px 28px;">
                                     <i class="bi-play-circle me-2"></i>Mulai Tes Gratis
                                 </a>
-                                <a href="#section_2" class="btn custom-border-btn custom-btn-bg-white smoothscroll" style="font-size:16px; padding:12px 28px;">
+                                <a href="#how-it-works-section" class="btn custom-border-btn custom-btn-bg-white smoothscroll" style="font-size:16px; padding:12px 28px;">
                                     Lihat Cara Kerja
                                 </a>
                             </div>
@@ -349,7 +349,7 @@
                         <!-- MBTI -->
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="custom-block bg-white shadow-lg h-100">
-                                <a href="login.html">
+                                <a href="login.php">
                                     <div class="feature-icon-wrap">
                                         <i class="bi bi-person-fill custom-icon" style="font-size:40px;"></i>
                                     </div>
@@ -367,7 +367,7 @@
                         <!-- Minat & Bakat-->
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="custom-block bg-white shadow-lg h-100">
-                                <a href="login.html">
+                                <a href="login.php">
                                     <div class="feature-icon-wrap">
                                         <i class="bi-heart-pulse custom-icon" style="font-size:40px;"></i>
                                     </div>
@@ -383,7 +383,7 @@
             </section>
 
             <!-- ════════════ CARA KERJA ════════════ -->
-            <section class="how-it-works-section">
+            <section class="how-it-works-section" id="how-it-works-section">
                 <div class="container">
                     <div class="row mb-5">
                         <div class="col-12 text-center">
@@ -441,7 +441,7 @@
                         </div>
 
                     <div class="text-center mt-5">
-                        <a href="login.html" class="btn custom-btn" style="font-size:16px; padding:14px 36px;">
+                        <a href="login.php" class="btn custom-btn" style="font-size:16px; padding:14px 36px;">
                             <i class="bi-play-circle me-2"></i> Coba Sekarang — Gratis
                         </a>
                     </div>
@@ -622,7 +622,7 @@
                                 mulai tes gratis hanya dalam 25 menit.
                             </p>
                             <div class="d-flex flex-wrap gap-3 justify-content-center">
-                                <a href="login.html" class="cta-btn-white">
+                                <a href="login.php" class="cta-btn-white">
                                     <i class="bi-play-circle me-2"></i> Mulai Tes Sekarang
                                 </a>
                                 <a href="#section_5" class="cta-btn-outline smoothscroll">
@@ -688,7 +688,7 @@
 
                         <!-- Form -->
                         <div class="col-lg-6 col-12 ms-auto">
-                            <form class="custom-form contact-form" action="#" method="post" role="form">
+                            <form class="custom-form contact-form" action="contact.php" method="post" role="form">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-floating">
@@ -744,7 +744,7 @@
 
                         <!-- Kolom 1: Branding & Deskripsi -->
                         <div class="col-lg-5 col-12">
-                            <a class="navbar-brand d-flex align-items-center mb-3" href="index.html">
+                            <a class="navbar-brand d-flex align-items-center mb-3" href="index.php">
                                 <i class="bi-compass me-2"></i>
                                 <span>PrediksiKarir</span>
                             </a>

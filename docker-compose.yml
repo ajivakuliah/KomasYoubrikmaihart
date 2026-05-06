@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web:/var/www/html
+    environment:
+      - DOCKER_ENV=1
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_DATABASE: karirmatch
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
