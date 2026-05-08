@@ -4,27 +4,30 @@ include __DIR__ . '/../config/db.php';
 
 // Statistik
 $totalUsers = $conn->query("SELECT COUNT(*) as t FROM users")->fetch_assoc()['t'];
-$totalResults = $conn->query("SELECT COUNT(*) as t FROM results")->fetch_assoc()['t'];
-$totalContacts = $conn->query("SELECT COUNT(*) as t FROM contacts")->fetch_assoc()['t'];
+$totalResults = $conn->query("SELECT COUNT(*) as t FROM test_results")->fetch_assoc()['t'];
+$totalContacts = $conn->query("SELECT COUNT(*) as t FROM contact")->fetch_assoc()['t'];
 
 $totalQuestions = 
-    $conn->query("SELECT COUNT(*) as t FROM mbti_questions")->fetch_assoc()['t'] +
     $conn->query("SELECT COUNT(*) as t FROM riasec_questions")->fetch_assoc()['t'];
 
 // Latest result
 $latest = $conn->query("
-SELECT u.name, r.mbti, r.riasec
-FROM results r
-JOIN users u ON u.id = r.user_id
-ORDER BY r.created_at DESC
-LIMIT 5
+SELECT 
+    u.name,
+    tr.mbti_code,
+    tr.recommended_major,
+    tr.created_at
+FROM test_results tr
+JOIN users u ON u.id = tr.user_id
+ORDER BY tr.created_at DESC
+LIMIT 10
 ");
 
 // Distribusi MBTI
 $mbtiData = $conn->query("
-SELECT mbti, COUNT(*) as total 
-FROM results 
-GROUP BY mbti
+SELECT mbti_code, COUNT(*) as total 
+FROM test_results 
+GROUP BY mbti_code
 ");
 ?>
 
@@ -114,40 +117,152 @@ body {
 <div class="d-flex">
 
 <!-- SIDEBAR -->
-<div class="sidebar">
-    <h4>CareerPath Admin</h4>
-    <small>Panel Manajemen</small>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+    id="accordionSidebar">
 
-    <hr>
+    <!-- BRAND -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center"
+        href="index.php">
 
-    <div class="menu">
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-brain"></i>
+        </div>
 
-        <!-- UTAMA -->
-        <small class="text-muted">UTAMA</small>
-        <a href="admin-dashboard.php" class="active">Dashboard</a>
-        <a href="admin-results.php">Hasil Tes</a>
-        <a href="admin-users.php">Data Pengguna</a>
-        <a href="admin-contacts.php">Pesan Masuk</a>
+        <div class="sidebar-brand-text mx-2">
+            PrediksiKarir
+        </div>
 
-        <!-- KONTEN TES -->
-        <small class="text-muted mt-3">KONTEN TES</small>
-        <a href="admin-mbti-questions.php">Soal MBTI</a>
-        <a href="admin-riasec-questions.php">Soal Bakat & Minat</a>
-        <a href="admin-methods.php">Metode Tes</a>
-        <a href="admin-careers.php">Data Karir</a>
-        <a href="admin-mbti-careers.php">Relasi MBTI-Karir</a>
+    </a>
 
-        <!-- WEBSITE -->
-        <small class="text-muted mt-3">WEBSITE</small>
-        <a href="admin-homepage.php">Edit Homepage</a>
-        <a href="admin-features.php">Fitur Unggulan</a>
-        <a href="admin-faq.php">Kelola FAQ</a>
-        <a href="admin-footer.php">Edit Footer</a>
+    <hr class="sidebar-divider my-0">
 
-        <hr>
-        <a href="admin-logout.php" class="text-danger">Logout</a>
+    <!-- DASHBOARD -->
+    <li class="nav-item">
+        <a class="nav-link" href="index.php">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <!-- DATA PENGGUNA -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-users.php">
+            <i class="fas fa-users"></i>
+            <span>Data Pengguna</span>
+        </a>
+    </li>
+
+    <!-- DATA HASIL TES -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-results.php">
+            <i class="fas fa-poll"></i>
+            <span>Data Hasil Tes</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <!-- MBTI -->
+    <div class="sidebar-heading">
+        MBTI
     </div>
-</div>
+
+    <!-- DATA MBTI -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-mbti.php">
+            <i class="fas fa-brain"></i>
+            <span>Data MBTI</span>
+        </a>
+    </li>
+
+    <!-- RELASI MBTI RIASEC -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-mbti-riasec.php">
+            <i class="fas fa-random"></i>
+            <span>Relasi MBTI-RIASEC</span>
+        </a>
+    </li>
+
+    <!-- RELASI MBTI KARIR -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-mbti-careers.php">
+            <i class="fas fa-link"></i>
+            <span>Relasi MBTI-Karir</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="admin-mbti-fields.php">
+            <i class="fas fa-layer-group"></i>
+            <span>Relasi MBTI-Bidang</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <!-- RIASEC -->
+    <div class="sidebar-heading">
+        RIASEC
+    </div>
+
+    <!-- SOAL RIASEC -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-riasec-questions.php">
+            <i class="fas fa-book"></i>
+            <span>Soal RIASEC</span>
+        </a>
+    </li>
+
+    <!-- RELASI RIASEC KARIR -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-riasec-careers.php">
+            <i class="fas fa-briefcase"></i>
+            <span>Relasi RIASEC-Karir</span>
+        </a>
+    </li>
+
+    <!-- RELASI RIASEC JURUSAN -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-riasec-majors.php">
+            <i class="fas fa-university"></i>
+            <span>Relasi RIASEC-Jurusan</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <!-- DATA MASTER -->
+    <div class="sidebar-heading">
+        Data Master
+    </div>
+
+    <!-- DATA KARIR -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-careers.php">
+            <i class="fas fa-briefcase"></i>
+            <span>Data Karir</span>
+        </a>
+    </li>
+
+    <!-- DATA JURUSAN -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-majors.php">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Data Jurusan</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <!-- PESAN MASUK -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-contacts.php">
+            <i class="fas fa-envelope"></i>
+            <span>Pesan Masuk</span>
+        </a>
+    </li>
+
+</ul>
 
 <!-- CONTENT -->
 <div class="content">
@@ -196,24 +311,31 @@ body {
                 </div>
 
                 <table class="table mt-3">
-                    <tr>
-                        <th>Nama</th>
-                        <th>MBTI</th>
-                        <th>RIASEC</th>
-                    </tr>
+                <tr>
+                    <th>Nama</th>
+                    <th>MBTI</th>
+                    <th>Jurusan</th>
+                    <th>Tanggal</th>
+                </tr>
 
-                    <?php while($row = $latest->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= $row['name']; ?></td>
-                        <td>
-                            <span class="badge-soft <?= $row['mbti']; ?>">
-                                <?= $row['mbti']; ?>
-                            </span>
-                        </td>
-                        <td><?= $row['riasec']; ?></td>
-                    </tr>
-                    <?php endwhile; ?>
-                </table>
+                <?php while($row = $latest->fetch_assoc()): ?>
+                <tr>
+                    <td><?= $row['name']; ?></td>
+
+                    <td>
+                        <span class="badge-soft <?= $row['mbti_code']; ?>">
+                            <?= $row['mbti_code']; ?>
+                        </span>
+                    </td>
+
+                    <td><?= $row['recommended_major']; ?></td>
+
+                    <td>
+                        <?= date('d M Y', strtotime($row['created_at'])); ?>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </table>
             </div>
         </div>
 
@@ -225,7 +347,7 @@ body {
                 <?php while($row = $mbtiData->fetch_assoc()): ?>
                     <div class="mt-3">
                         <div class="d-flex justify-content-between">
-                            <span><?= $row['mbti']; ?></span>
+                            <span><?= $row['mbti_code']; ?></span>
                             <span><?= $row['total']; ?></span>
                         </div>
 
