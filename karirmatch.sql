@@ -12,6 +12,7 @@ CREATE TABLE users (
     password VARCHAR(255),
     phone VARCHAR(20),
     class ENUM('10','11','12'),
+    gender ENUM('L','P'),
     role ENUM('admin','user') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

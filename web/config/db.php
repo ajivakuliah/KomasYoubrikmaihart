@@ -1,7 +1,7 @@
 <?php
-$host = "db";        // nama service di docker-compose
+$host = "localhost";        // nama service di docker-compose
 $user = "root";
-$pass = "root";
+$pass = "";
 $db   = "karirmatch";
 
 // coba koneksi (dengan retry biar aman di docker)

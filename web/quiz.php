@@ -28,7 +28,7 @@ if(!isset($_SESSION['user_id'])){
         content="Platform rekomendasi jurusan dan karir berdasarkan MBTI dan tes minat bakat RIASEC" />
 
     <title>
-        KarirMatch — Temukan Karir Idealmu
+        PrediksiKarir — Temukan Karir Idealmu
     </title>
 
     <!-- GOOGLE FONT -->
@@ -54,35 +54,18 @@ if(!isset($_SESSION['user_id'])){
          TOPBAR
     ========================= -->
 
-    <div class="quiz-topbar">
+    <header class="quiz-topbar">
 
         <div class="topbar-left">
-
-            <h3>
-                KarirMatch
-            </h3>
-
+            <a href="student-home.php" class="brand-link">PrediksiKarir</a>
         </div>
 
         <div class="topbar-right">
-
-            <span class="user-name">
-
-                Halo,
-                <?= htmlspecialchars($_SESSION['name']) ?>
-
-            </span>
-
-            <a href="logout.php"
-                class="logout-btn">
-
-                Logout
-
-            </a>
-
+            <span class="user-name">Halo, <?= htmlspecialchars($_SESSION['name']) ?></span>
+            <a href="logout.php" class="logout-btn">Logout</a>
         </div>
 
-    </div>
+    </header>
 
     <!-- =========================
          HERO
