@@ -203,7 +203,7 @@ $relations = $conn->query("
     </li>
 
     <!-- RELASI MBTI KARIR -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-mbti-careers.php">
             <i class="fas fa-link"></i>
             <span>Relasi MBTI-Karir</span>

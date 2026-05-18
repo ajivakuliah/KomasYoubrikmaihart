@@ -298,7 +298,7 @@ $totalCareers = $conn->query("
     </div>
 
     <!-- DATA KARIR -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-careers.php">
             <i class="fas fa-briefcase"></i>
             <span>Data Karir</span>

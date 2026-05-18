@@ -167,7 +167,7 @@ $users = $conn->query("
     </li>
 
     <!-- DATA PENGGUNA -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-users.php">
             <i class="fas fa-users"></i>
             <span>Data Pengguna</span>

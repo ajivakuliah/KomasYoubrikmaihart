@@ -235,7 +235,7 @@ $relations = $conn->query("
     </li>
 
     <!-- RELASI RIASEC KARIR -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-riasec-careers.php">
             <i class="fas fa-briefcase"></i>
             <span>Relasi RIASEC-Karir</span>

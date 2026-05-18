@@ -224,7 +224,7 @@ $mbti = $conn->query("
         </a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-mbti-fields.php">
             <i class="fas fa-layer-group"></i>
             <span>Relasi MBTI-Bidang</span>

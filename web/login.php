@@ -28,10 +28,12 @@ if(isset($_POST['login'])){
         $_SESSION['email']   = $result['email'];
         $_SESSION['role']    = $result['role'];
 
+        $redirect = $result['role'] === 'admin' ? 'admin/admin-dashboard.php' : 'student-home.php';
+
         echo "
         <script>
             alert('Login berhasil!');
-            window.location='quiz.php';
+            window.location='$redirect';
         </script>
         ";
         exit;
@@ -56,6 +58,7 @@ if(isset($_POST['register'])){
     $email    = trim($_POST['email']);
     $phone    = trim($_POST['phone']);
     $class    = trim($_POST['class']);
+    $gender   = trim($_POST['gender'] ?? '');
     $password = trim($_POST['password']);
 
     // cek email
@@ -78,24 +81,30 @@ if(isset($_POST['register'])){
     } else {
 
         $stmt = $conn->prepare("
-            INSERT INTO users
+            INSERT INTO `users`
             (
-                name,
-                email,
-                phone,
-                class,
-                password,
-                role
+                `name`,
+                `email`,
+                `phone`,
+                `class`,
+                `gender`,
+                `password`,
+                `role`
             )
-            VALUES (?, ?, ?, ?, ?, 'user')
+            VALUES (?, ?, ?, ?, ?, ?, 'user')
         ");
 
+        if(!$stmt){
+            die("Prepare failed: " . $conn->error);
+        }
+
         $stmt->bind_param(
-            "sssss",
+            "ssssss",
             $name,
             $email,
             $phone,
             $class,
+            $gender,
             $password
         );
 
@@ -109,7 +118,7 @@ if(isset($_POST['register'])){
             echo "
             <script>
                 alert('Registrasi berhasil!');
-                window.location='quiz.php';
+                window.location='student-home.php';
             </script>
             ";
             exit;
@@ -387,6 +396,36 @@ if(isset($_POST['register'])){
 
                             <option value="12">
                                 Kelas 12
+                            </option>
+
+                        </select>
+
+
+
+                    <!-- JENIS KELAMIN -->
+                    <div class="field-group">
+
+                        <label class="field-label">
+
+                            <i class="bi bi-person-check"></i>
+                            Jenis Kelamin (Opsional)
+
+                        </label>
+
+                        <select
+                            name="gender"
+                            class="field-input">
+
+                            <option value="">
+                                -- Pilih Jenis Kelamin --
+                            </option>
+
+                            <option value="L">
+                                Laki-laki
+                            </option>
+
+                            <option value="P">
+                                Perempuan
                             </option>
 
                         </select>

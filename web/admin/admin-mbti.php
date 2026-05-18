@@ -1,58 +1,108 @@
 <?php
-include 'auth.php';
-include '../config/db.php';
 
-/* =========================
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+require_once 'auth.php';
+require_once __DIR__ . '/../config/db.php';
+
+/* =====================================
    TAMBAH MBTI
-========================= */
+===================================== */
+
 if(isset($_POST['add_mbti'])){
 
-    $code = $_POST['code'];
-    $name = $_POST['name'];
-    $description = $_POST['description'];
+    $code        = trim($_POST['code']);
+    $name        = trim($_POST['name']);
+    $description = trim($_POST['description']);
 
-    $conn->query("
-        INSERT INTO mbti_types(code, name, description)
-        VALUES('$code','$name','$description')
+    // cek duplicate
+    $check = $conn->prepare("
+        SELECT id
+        FROM mbti_types
+        WHERE code = ?
     ");
 
+    $check->bind_param("s", $code);
+    $check->execute();
+
+    $exist = $check->get_result();
+
+    if($exist->num_rows < 1){
+
+        $stmt = $conn->prepare("
+            INSERT INTO mbti_types
+            (code, name, description)
+            VALUES (?, ?, ?)
+        ");
+
+        $stmt->bind_param(
+            "sss",
+            $code,
+            $name,
+            $description
+        );
+
+        $stmt->execute();
+    }
+
     header("Location: admin-mbti.php");
     exit;
 }
 
-/* =========================
-   HAPUS MBTI
-========================= */
+/* =====================================
+   DELETE MBTI
+===================================== */
+
 if(isset($_GET['delete'])){
 
-    $id = $_GET['delete'];
+    $id = (int) $_GET['delete'];
 
-    $conn->query("DELETE FROM mbti_types WHERE id='$id'");
+    $stmt = $conn->prepare("
+        DELETE FROM mbti_types
+        WHERE id = ?
+    ");
+
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
 
     header("Location: admin-mbti.php");
     exit;
 }
 
-/* =========================
+/* =====================================
    DATA MBTI
-========================= */
+===================================== */
+
 $mbti = $conn->query("
     SELECT *
     FROM mbti_types
     ORDER BY code ASC
 ");
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
 
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
     <title>Data MBTI</title>
 
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- SB ADMIN -->
+    <link href="vendor/fontawesome-free/css/all.min.css"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900"
+        rel="stylesheet">
+
+    <link href="css/sb-admin-2.min.css"
+        rel="stylesheet">
 
 </head>
 
@@ -60,170 +110,219 @@ $mbti = $conn->query("
 
 <div id="wrapper">
 
-    <!-- SIDEBAR -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-        id="accordionSidebar">
+<!-- SIDEBAR -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+    id="accordionSidebar">
 
-        <a class="sidebar-brand d-flex align-items-center justify-content-center"
-            href="index.php">
 
-            <div class="sidebar-brand-icon">
-                <i class="fas fa-brain"></i>
-            </div>
+    <!-- BRAND -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center"
+        href="index.php">
 
-            <div class="sidebar-brand-text mx-2">
-                PrediksiKarir
-            </div>
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-brain"></i>
+        </div>
 
+        <div class="sidebar-brand-text mx-2">
+            PrediksiKarir
+        </div>
+
+    </a>
+
+    <hr class="sidebar-divider my-0">
+
+    <!-- DASHBOARD -->
+    <li class="nav-item">
+        <a class="nav-link" href="index.php">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
         </a>
+    </li>
 
-        <hr class="sidebar-divider my-0">
+    <!-- DATA PENGGUNA -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-users.php">
+            <i class="fas fa-users"></i>
+            <span>Data Pengguna</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="index.php">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
+    <!-- DATA HASIL TES -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-results.php">
+            <i class="fas fa-poll"></i>
+            <span>Data Hasil Tes</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-users.php">
-                <i class="fas fa-users"></i>
-                <span>Data Pengguna</span>
-            </a>
-        </li>
+    <hr class="sidebar-divider">
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-results.php">
-                <i class="fas fa-poll"></i>
-                <span>Data Hasil Tes</span>
-            </a>
-        </li>
+    <!-- MBTI -->
+    <div class="sidebar-heading">
+        MBTI
+    </div>
 
-        <hr class="sidebar-divider">
+    <!-- DATA MBTI -->
+    <li class="nav-item active">
+        <a class="nav-link" href="admin-mbti.php">
+            <i class="fas fa-brain"></i>
+            <span>Data MBTI</span>
+        </a>
+    </li>
 
-        <div class="sidebar-heading">
-            MBTI
-        </div>
+    <!-- RELASI MBTI-RIASEC -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-mbti-riasec.php">
+            <i class="fas fa-random"></i>
+            <span>Relasi MBTI-RIASEC</span>
+        </a>
+    </li>
 
-        <li class="nav-item active">
-            <a class="nav-link" href="admin-mbti.php">
-                <i class="fas fa-brain"></i>
-                <span>Data MBTI</span>
-            </a>
-        </li>
+    <!-- RELASI MBTI-KARIR -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-mbti-careers.php">
+            <i class="fas fa-link"></i>
+            <span>Relasi MBTI-Karir</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-mbti-riasec.php">
-                <i class="fas fa-link"></i>
-                <span>Relasi MBTI-RIASEC</span>
-            </a>
-        </li>
+    <!-- RELASI MBTI-BIDANG -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-mbti-fields.php">
+            <i class="fas fa-layer-group"></i>
+            <span>Relasi MBTI-Bidang</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-mbti-careers.php">
-                <i class="fas fa-briefcase"></i>
-                <span>Relasi MBTI-Karir</span>
-            </a>
-        </li>
+    <hr class="sidebar-divider">
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-mbti-fields.php">
-                <i class="fas fa-layer-group"></i>
-                <span>Relasi MBTI-Bidang</span>
-            </a>
-        </li>
+    <!-- RIASEC -->
+    <div class="sidebar-heading">
+        RIASEC
+    </div>
 
-        <hr class="sidebar-divider">
+    <!-- SOAL RIASEC -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-riasec-questions.php">
+            <i class="fas fa-book"></i>
+            <span>Soal RIASEC</span>
+        </a>
+    </li>
 
-        <div class="sidebar-heading">
-            RIASEC
-        </div>
+    <!-- RELASI RIASEC-KARIR -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-riasec-careers.php">
+            <i class="fas fa-briefcase"></i>
+            <span>Relasi RIASEC-Karir</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-riasec-questions.php">
-                <i class="fas fa-book"></i>
-                <span>Soal RIASEC</span>
-            </a>
-        </li>
+    <!-- RELASI RIASEC-JURUSAN -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-riasec-majors.php">
+            <i class="fas fa-university"></i>
+            <span>Relasi RIASEC-Jurusan</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-riasec-careers.php">
-                <i class="fas fa-link"></i>
-                <span>Relasi RIASEC-Karir</span>
-            </a>
-        </li>
+    <hr class="sidebar-divider">
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-riasec-majors.php">
-                <i class="fas fa-link"></i>
-                <span>Relasi RIASEC-Jurusan</span>
-            </a>
-        </li>
+    <!-- DATA MASTER -->
+    <div class="sidebar-heading">
+        Data Master
+    </div>
 
-        <hr class="sidebar-divider">
+    <!-- DATA KARIR -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-careers.php">
+            <i class="fas fa-briefcase"></i>
+            <span>Data Karir</span>
+        </a>
+    </li>
 
-        <div class="sidebar-heading">
-            Master Data
-        </div>
+    <!-- DATA JURUSAN -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-majors.php">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Data Jurusan</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-careers.php">
-                <i class="fas fa-briefcase"></i>
-                <span>Data Karir</span>
-            </a>
-        </li>
+    <hr class="sidebar-divider">
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-majors.php">
-                <i class="fas fa-university"></i>
-                <span>Data Jurusan</span>
-            </a>
-        </li>
+    <!-- PESAN MASUK -->
+    <li class="nav-item">
+        <a class="nav-link" href="admin-contacts.php">
+            <i class="fas fa-envelope"></i>
+            <span>Pesan Masuk</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="admin-contacts.php">
-                <i class="fas fa-envelope"></i>
-                <span>Pesan Masuk</span>
-            </a>
-        </li>
+    <!-- SIDEBAR TOGGLER -->
+    <hr class="sidebar-divider d-none d-md-block">
 
-    </ul>
+    <div class="text-center d-none d-md-inline">
 
-    <!-- CONTENT -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <button class="rounded-circle border-0"
+            id="sidebarToggle"></button>
 
-        <div id="content">
+    </div>
 
-            <!-- TOPBAR -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <h5 class="m-0 font-weight-bold text-primary">
-                    Data MBTI
-                </h5>
-            </nav>
+</ul>
 
-            <div class="container-fluid">
+<!-- CONTENT -->
+<div id="content-wrapper"
+    class="d-flex flex-column">
 
-                <!-- FORM -->
-                <div class="card shadow mb-4">
+    <div id="content">
 
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">
-                            Tambah Data MBTI
-                        </h6>
-                    </div>
+        <!-- TOPBAR -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <div class="card-body">
+            <button id="sidebarToggleTop"
+                class="btn btn-link d-md-none rounded-circle mr-3">
 
-                        <form method="POST">
+                <i class="fa fa-bars"></i>
 
-                            <div class="row">
+            </button>
 
-                                <div class="col-md-2 mb-3">
-                                    <label>Kode MBTI</label>
-                                    <select name="code" class="form-control" required>
+            <h4 class="m-0 text-primary">
+                Data MBTI
+            </h4>
 
-                                    <option value="">-- Pilih MBTI --</option>
+        </nav>
+
+        <!-- CONTAINER -->
+        <div class="container-fluid">
+
+            <!-- FORM -->
+            <div class="card shadow mb-4">
+
+                <div class="card-header py-3">
+
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        Tambah Data MBTI
+                    </h6>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST">
+
+                        <div class="row">
+
+                            <div class="col-md-2 mb-3">
+
+                                <label>Kode MBTI</label>
+
+                                <select name="code"
+                                    class="form-control"
+                                    required>
+
+                                    <option value="">
+                                        -- Pilih MBTI --
+                                    </option>
 
                                     <option value="INTJ">INTJ</option>
                                     <option value="INTP">INTP</option>
@@ -246,123 +345,179 @@ $mbti = $conn->query("
                                     <option value="ESFP">ESFP</option>
 
                                 </select>
-                                </div>
-
-                                <div class="col-md-3 mb-3">
-                                    <label>Nama MBTI</label>
-                                    <input type="text"
-                                           name="name"
-                                           class="form-control"
-                                           placeholder="Arsitek"
-                                           required>
-                                </div>
-
-                                <div class="col-md-5 mb-3">
-                                    <label>Deskripsi</label>
-                                    <input type="text"
-                                           name="description"
-                                           class="form-control"
-                                           placeholder="Strategis, mandiri, dan logis"
-                                           required>
-                                </div>
-
-                                <div class="col-md-2 mb-3 d-flex align-items-end">
-                                    <button type="submit"
-                                            name="add_mbti"
-                                            class="btn btn-primary btn-block">
-
-                                        <i class="fas fa-plus"></i>
-                                        Tambah
-
-                                    </button>
-                                </div>
 
                             </div>
 
-                        </form>
+                            <div class="col-md-3 mb-3">
 
-                    </div>
-                </div>
+                                <label>Nama MBTI</label>
 
-                <!-- TABLE -->
-                <div class="card shadow mb-4">
+                                <input type="text"
+                                    name="name"
+                                    class="form-control"
+                                    placeholder="Arsitek"
+                                    required>
 
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">
-                            List Data MBTI
-                        </h6>
-                    </div>
+                            </div>
 
-                    <div class="card-body">
+                            <div class="col-md-5 mb-3">
 
-                        <div class="table-responsive">
+                                <label>Deskripsi</label>
 
-                            <table class="table table-bordered">
+                                <input type="text"
+                                    name="description"
+                                    class="form-control"
+                                    placeholder="Strategis, mandiri, dan logis"
+                                    required>
 
-                                <thead class="bg-primary text-white">
+                            </div>
 
-                                    <tr>
-                                        <th width="60">No</th>
-                                        <th>Kode MBTI</th>
-                                        <th>Nama MBTI</th>
-                                        <th>Deskripsi</th>
-                                        <th width="120">Aksi</th>
-                                    </tr>
+                            <div class="col-md-2 mb-3 d-flex align-items-end">
 
-                                </thead>
+                                <button type="submit"
+                                    name="add_mbti"
+                                    class="btn btn-primary btn-block">
 
-                                <tbody>
+                                    <i class="fas fa-plus"></i>
+                                    Tambah
 
-                                <?php
-                                $no = 1;
-                                while($row = $mbti->fetch_assoc()):
-                                ?>
+                                </button>
 
-                                    <tr>
-
-                                        <td><?= $no++; ?></td>
-
-                                        <td>
-                                            <strong><?= $row['code']; ?></strong>
-                                        </td>
-
-                                        <td><?= $row['name']; ?></td>
-
-                                        <td><?= $row['description']; ?></td>
-
-                                        <td>
-
-                                            <a href="?delete=<?= $row['id']; ?>"
-                                               class="btn btn-danger btn-sm"
-                                               onclick="return confirm('Hapus data?')">
-
-                                                <i class="fas fa-trash"></i>
-
-                                            </a>
-
-                                        </td>
-
-                                    </tr>
-
-                                <?php endwhile; ?>
-
-                                </tbody>
-
-                            </table>
+                            </div>
 
                         </div>
 
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- TABLE -->
+            <div class="card shadow mb-4">
+
+                <div class="card-header py-3">
+
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        List Data MBTI
+                    </h6>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+
+                            <thead class="thead-dark">
+
+                                <tr>
+
+                                    <th width="60">No</th>
+                                    <th>Kode MBTI</th>
+                                    <th>Nama MBTI</th>
+                                    <th>Deskripsi</th>
+                                    <th width="120">Aksi</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                            <?php if($mbti->num_rows > 0): ?>
+
+                                <?php $no = 1; ?>
+
+                                <?php while($row = $mbti->fetch_assoc()): ?>
+
+                                <tr>
+
+                                    <td><?= $no++ ?></td>
+
+                                    <td>
+                                        <strong><?= $row['code'] ?></strong>
+                                    </td>
+
+                                    <td><?= $row['name'] ?></td>
+
+                                    <td><?= $row['description'] ?></td>
+
+                                    <td>
+
+                                        <a href="?delete=<?= $row['id'] ?>"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Hapus data MBTI ini?')">
+
+                                            <i class="fas fa-trash"></i>
+
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                                <?php endwhile; ?>
+
+                            <?php else: ?>
+
+                                <tr>
+
+                                    <td colspan="5"
+                                        class="text-center text-muted">
+
+                                        Belum ada data MBTI.
+
+                                    </td>
+
+                                </tr>
+
+                            <?php endif; ?>
+
+                            </tbody>
+
+                        </table>
+
                     </div>
+
                 </div>
 
             </div>
 
         </div>
+
     </div>
+
+    <!-- FOOTER -->
+    <footer class="sticky-footer bg-white">
+
+        <div class="container my-auto">
+
+            <div class="copyright text-center my-auto">
+
+                <span>
+                    Copyright &copy;
+                    PrediksiKarir <?= date('Y') ?>
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
 </div>
 
+</div>
+
+<!-- JS -->
 <script src="vendor/jquery/jquery.min.js"></script>
+
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
 <script src="js/sb-admin-2.min.js"></script>
 
 </body>

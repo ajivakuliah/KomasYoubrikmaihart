@@ -63,6 +63,58 @@ a {
   padding: 0 16px 80px;
 }
 
+.quiz-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 820px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 0 12px;
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-link {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.user-name {
+  font-size: 14px;
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.logout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--section-bg);
+  color: var(--primary);
+  border: 1px solid var(--border-light);
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
 .page {
   animation: fadeUp 0.35s ease;
 }
@@ -344,50 +396,265 @@ a {
 .mbti-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 24px;
 }
 
 .mbti-card {
-  padding: 14px 8px;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid var(--border-light);
+  padding: 16px 12px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-light);
   background: var(--white);
   text-align: center;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: all 0.3s;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(19, 84, 122, 0.05);
 }
 
 .mbti-card:hover {
   border-color: var(--secondary);
   background: var(--section-bg);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(19, 84, 122, 0.12);
 }
 
 .mbti-card.selected {
   border-color: var(--primary);
   background: linear-gradient(135deg, #13547a, #1e7099);
   color: var(--white);
+  box-shadow: 0 8px 20px rgba(19, 84, 122, 0.25);
 }
 
 .mbti-type {
   font-family: var(--font-title);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 4px;
 }
 
 .mbti-name {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--p-color);
-  margin-top: 3px;
+  font-weight: 600;
+  display: block;
 }
 
-.mbti-card.selected .mbti-name {
+.mbti-desc {
+  font-size: 9px;
+  color: var(--p-color);
+  margin-top: 5px;
+  line-height: 1.3;
+  display: none;
+}
+
+.mbti-card:hover .mbti-desc {
+  display: block;
+}
+
+.mbti-card.selected .mbti-name,
+.mbti-card.selected .mbti-desc {
   color: rgba(255, 255, 255, 0.75);
 }
 
 .mbti-card.selected .mbti-type {
   color: var(--white);
+}
+
+/* ----------------------------------------
+   MBTI MODAL
+---------------------------------------- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.modal-code {
+  background: var(--section-bg);
+  color: var(--primary);
+  padding: 4px 12px;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--p-color);
+  transition: color 0.2s;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: var(--primary);
+}
+
+.modal-desc {
+  color: var(--primary);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.modal-section {
+  margin-bottom: 20px;
+}
+
+.modal-section-title {
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  border-left: 3px solid var(--secondary);
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.modal-section-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.modal-tag {
+  background: var(--section-bg);
+  color: var(--primary);
+  border-radius: var(--radius-lg);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid #c0dff0;
+}
+
+.modal-section-list.riasec {
+  display: flex;
+  gap: 6px;
+}
+
+.riasec-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--white);
+}
+
+.riasec-badge.r { background: #e74c3c; }
+.riasec-badge.i { background: #3498db; }
+.riasec-badge.a { background: #9b59b6; }
+.riasec-badge.s { background: #27ae60; }
+.riasec-badge.e { background: #f39c12; }
+.riasec-badge.c { background: #34495e; }
+
+.modal-action {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.modal-action button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-title);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modal-action .btn-select {
+  background: var(--secondary);
+  color: var(--white);
+}
+
+.modal-action .btn-select:hover {
+  background: var(--primary);
+}
+
+.modal-action .btn-cancel {
+  background: var(--section-bg);
+  color: var(--primary);
+}
+
+.modal-action .btn-cancel:hover {
+  background: #dceef7;
 }
 
 /* ----------------------------------------
@@ -681,6 +948,19 @@ a {
 @media screen and (max-width: 500px) {
   .mbti-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .mbti-card {
+    padding: 12px 8px;
+  }
+
+  .mbti-type {
+    font-size: 14px;
+  }
+
+  .mbti-name {
+    font-size: 9px;
   }
 
   .rec-grid,
@@ -702,5 +982,14 @@ a {
 
   .progress-wrap {
     padding: 16px;
+  }
+
+  .modal-content {
+    padding: 24px;
+    width: 95%;
+  }
+
+  .modal-title {
+    font-size: 18px;
   }
 }

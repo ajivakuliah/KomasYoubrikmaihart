@@ -248,7 +248,7 @@ $totalMessages = $conn->query("
     <hr class="sidebar-divider">
 
     <!-- PESAN MASUK -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-contacts.php">
             <i class="fas fa-envelope"></i>
             <span>Pesan Masuk</span>

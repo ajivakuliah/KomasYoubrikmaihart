@@ -258,7 +258,7 @@ $totalQuestions = $conn->query("
     </div>
 
     <!-- SOAL RIASEC -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-riasec-questions.php">
             <i class="fas fa-book"></i>
             <span>Soal RIASEC</span>

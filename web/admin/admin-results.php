@@ -95,6 +95,12 @@ $totalResults = $conn->query("
     FROM test_results
 ")->fetch_assoc()['total'];
 
+/* =====================================
+   MODAL STORAGE
+===================================== */
+
+$allModals = "";
+
 ?>
 
 <!DOCTYPE html>
@@ -166,7 +172,7 @@ $totalResults = $conn->query("
     </li>
 
     <!-- DATA HASIL TES -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-results.php">
             <i class="fas fa-poll"></i>
             <span>Data Hasil Tes</span>
@@ -277,372 +283,297 @@ $totalResults = $conn->query("
 
 </ul>
 
-    <!-- CONTENT -->
-    <div id="content-wrapper"
-        class="d-flex flex-column">
+<!-- CONTENT -->
+<div id="content-wrapper"
+    class="d-flex flex-column">
 
-        <div id="content">
+    <div id="content">
 
-            <!-- TOPBAR -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <!-- TOPBAR -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                <button id="sidebarToggleTop"
-                    class="btn btn-link d-md-none rounded-circle mr-3">
+            <h4 class="m-0 text-primary">
+                Hasil Tes
+            </h4>
 
-                    <i class="fa fa-bars"></i>
+        </nav>
 
-                </button>
+        <!-- CONTAINER -->
+        <div class="container-fluid">
 
-                <h4 class="m-0 text-primary">
-                    Hasil Tes
-                </h4>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-                <ul class="navbar-nav ml-auto">
+                <h1 class="h3 mb-0 text-gray-800">
+                    Data Hasil Tes
+                </h1>
 
-                    <li class="nav-item dropdown no-arrow">
+            </div>
 
-                        <a class="nav-link dropdown-toggle"
-                            href="#"
-                            id="userDropdown"
-                            role="button"
-                            data-toggle="dropdown">
+            <!-- CARD -->
+            <div class="card shadow mb-4">
 
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                <!-- HEADER -->
+                <div class="card-header py-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center">
 
-                                <?= htmlspecialchars($_SESSION['name'] ?? 'Admin') ?>
+                    <h6 class="m-0 font-weight-bold text-primary">
 
-                            </span>
+                        Total Hasil Tes:
+                        <?= $totalResults ?>
 
-                            <img class="img-profile rounded-circle"
-                                src="img/undraw_profile.svg">
+                    </h6>
 
-                        </a>
+                    <!-- SEARCH -->
+                    <form method="GET"
+                        class="mt-3 mt-md-0">
 
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+                        <div class="input-group">
 
-                            <a class="dropdown-item"
-                                href="logout.php">
+                            <input type="text"
+                                name="search"
+                                class="form-control bg-light border-0 small"
+                                placeholder="Cari nama / email / MBTI"
+                                value="<?= htmlspecialchars($search) ?>">
 
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            <div class="input-group-append">
 
-                                Logout
+                                <button class="btn btn-primary"
+                                    type="submit">
 
-                            </a>
+                                    <i class="fas fa-search fa-sm"></i>
 
-                        </div>
-
-                    </li>
-
-                </ul>
-
-            </nav>
-
-            <!-- CONTAINER -->
-            <div class="container-fluid">
-
-                <!-- PAGE TITLE -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-
-                    <h1 class="h3 mb-0 text-gray-800">
-                        Data Hasil Tes
-                    </h1>
-
-                </div>
-
-                <!-- CARD -->
-                <div class="card shadow mb-4">
-
-                    <!-- HEADER -->
-                    <div class="card-header py-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-
-                        <h6 class="m-0 font-weight-bold text-primary">
-
-                            Total Hasil Tes:
-                            <?= $totalResults ?>
-
-                        </h6>
-
-                        <!-- SEARCH -->
-                        <form method="GET"
-                            class="mt-3 mt-md-0">
-
-                            <div class="input-group">
-
-                                <input type="text"
-                                    name="search"
-                                    class="form-control bg-light border-0 small"
-                                    placeholder="Cari nama / email / MBTI"
-                                    value="<?= htmlspecialchars($search) ?>">
-
-                                <div class="input-group-append">
-
-                                    <button class="btn btn-primary"
-                                        type="submit">
-
-                                        <i class="fas fa-search fa-sm"></i>
-
-                                    </button>
-
-                                </div>
+                                </button>
 
                             </div>
 
-                        </form>
-
-                    </div>
-
-                    <!-- BODY -->
-                    <div class="card-body">
-
-                        <div class="table-responsive">
-
-                            <table class="table table-bordered"
-                                width="100%"
-                                cellspacing="0">
-
-                                <thead class="thead-light">
-
-                                    <tr>
-
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Email</th>
-                                        <th>Kelas</th>
-                                        <th>MBTI</th>
-                                        <th>RIASEC</th>
-                                        <th>Tanggal</th>
-                                        <th width="120">Aksi</th>
-
-                                    </tr>
-
-                                </thead>
-
-                                <tbody>
-
-                                <?php if($results->num_rows > 0): ?>
-
-                                    <?php $no = 1; ?>
-
-                                    <?php while($row = $results->fetch_assoc()): ?>
-
-                                    <tr>
-
-                                        <td>
-                                            <?= $no++ ?>
-                                        </td>
-
-                                        <td>
-                                            <?= htmlspecialchars($row['name']) ?>
-                                        </td>
-
-                                        <td>
-                                            <?= htmlspecialchars($row['email']) ?>
-                                        </td>
-
-                                        <td>
-                                            <?= htmlspecialchars($row['class']) ?>
-                                        </td>
-
-                                        <td>
-
-                                            <span class="badge badge-primary p-2">
-
-                                                <?= htmlspecialchars($row['mbti_code']) ?>
-
-                                            </span>
-
-                                        </td>
-
-                                        <td>
-
-                                            <span class="badge badge-success p-2">
-
-                                                <?= htmlspecialchars($row['top_riasec']) ?>
-
-                                            </span>
-
-                                        </td>
-
-                                        <td>
-                                            <?= htmlspecialchars($row['recommended_major']) ?>
-                                        </td>
-
-                                        <td>
-
-                                            <?= date(
-                                                'd M Y H:i',
-                                                strtotime($row['created_at'])
-                                            ) ?>
-
-                                        </td>
-
-                                        <td>
-
-                                            <!-- DETAIL -->
-                                            <button
-                                                class="btn btn-info btn-sm"
-                                                data-toggle="modal"
-                                                data-target="#detail<?= $row['id'] ?>">
-
-                                                <i class="fas fa-eye"></i>
-
-                                            </button>
-
-                                            <!-- DELETE -->
-                                            <a href="?delete=<?= $row['id'] ?>"
-                                                class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Hapus hasil tes ini?')">
-
-                                                <i class="fas fa-trash"></i>
-
-                                            </a>
-
-                                        </td>
-
-                                    </tr>
-
-                                    <!-- MODAL DETAIL -->
-                                    <div class="modal fade"
-                                        id="detail<?= $row['id'] ?>"
-                                        tabindex="-1">
-
-                                        <div class="modal-dialog">
-
-                                            <div class="modal-content">
-
-                                                <div class="modal-header">
-
-                                                    <h5 class="modal-title">
-
-                                                        Detail Hasil Tes
-
-                                                    </h5>
-
-                                                    <button type="button"
-                                                        class="close"
-                                                        data-dismiss="modal">
-
-                                                        <span>&times;</span>
-
-                                                    </button>
-
-                                                </div>
-
-                                                <div class="modal-body">
-
-                                                    <table class="table">
-
-                                                        <tr>
-                                                            <th>Nama</th>
-                                                            <td><?= htmlspecialchars($row['name']) ?></td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th>Email</th>
-                                                            <td><?= htmlspecialchars($row['email']) ?></td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th>Kelas</th>
-                                                            <td><?= htmlspecialchars($row['class']) ?></td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th>MBTI</th>
-                                                            <td><?= htmlspecialchars($row['mbti_code']) ?></td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th>Top RIASEC</th>
-                                                            <td><?= htmlspecialchars($row['top_riasec']) ?></td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th>Jurusan Rekomendasi</th>
-                                                            <td><?= htmlspecialchars($row['recommended_major']) ?></td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th>Tanggal</th>
-                                                            <td>
-                                                                <?= date(
-                                                                    'd M Y H:i',
-                                                                    strtotime($row['created_at'])
-                                                                ) ?>
-                                                            </td>
-                                                        </tr>
-
-                                                    </table>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <?php endwhile; ?>
-
-                                <?php else: ?>
-
-                                    <tr>
-
-                                        <td colspan="9"
-                                            class="text-center text-muted">
-
-                                            Belum ada hasil tes.
-
-                                        </td>
-
-                                    </tr>
-
-                                <?php endif; ?>
-
-                                </tbody>
-
-                            </table>
-
                         </div>
 
-                    </div>
+                    </form>
 
                 </div>
 
+                <!-- BODY -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered"
+                            width="100%"
+                            cellspacing="0">
+
+                            <thead class="thead-light">
+
+                                <tr>
+
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Kelas</th>
+                                    <th>MBTI</th>
+                                    <th>Top RIASEC</th>
+                                    <th>Tanggal</th>
+                                    <th width="120">Aksi</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                            <?php if($results->num_rows > 0): ?>
+
+                                <?php $no = 1; ?>
+
+                                <?php while($row = $results->fetch_assoc()): ?>
+
+                                <tr>
+
+                                    <td><?= $no++ ?></td>
+
+                                    <td>
+                                        <?= htmlspecialchars($row['name']) ?>
+                                    </td>
+
+                                    <td>
+                                        <?= htmlspecialchars($row['email']) ?>
+                                    </td>
+
+                                    <td>
+                                        <?= htmlspecialchars($row['class']) ?>
+                                    </td>
+
+                                    <td>
+
+                                        <span class="badge badge-primary p-2">
+
+                                            <?= htmlspecialchars($row['mbti_code']) ?>
+
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <span class="badge badge-success p-2">
+
+                                            <?= htmlspecialchars($row['top_riasec']) ?>
+
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <?= date(
+                                            'd M Y',
+                                            strtotime($row['created_at'])
+                                        ) ?>
+
+                                    </td>
+
+                                    <td>
+
+                                        <!-- DETAIL -->
+                                        <button
+                                            class="btn btn-info btn-sm"
+                                            data-toggle="modal"
+                                            data-target="#detail<?= $row['id'] ?>">
+
+                                            <i class="fas fa-eye"></i>
+
+                                        </button>
+
+                                        <!-- DELETE -->
+                                        <a href="?delete=<?= $row['id'] ?>"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Hapus hasil tes ini?')">
+
+                                            <i class="fas fa-trash"></i>
+
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+<?php
+
+$allModals .= '
+
+<div class="modal fade"
+    id="detail'.$row['id'].'"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Detail Hasil Tes
+                </h5>
+
+                <button type="button"
+                    class="close"
+                    data-dismiss="modal">
+
+                    <span>&times;</span>
+
+                </button>
+
             </div>
-            <!-- END CONTAINER -->
+
+            <div class="modal-body">
+
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th width="220">Nama</th>
+                        <td>'.$row['name'].'</td>
+                    </tr>
+
+                    <tr>
+                        <th>Email</th>
+                        <td>'.$row['email'].'</td>
+                    </tr>
+
+                    <tr>
+                        <th>Kelas</th>
+                        <td>'.$row['class'].'</td>
+                    </tr>
+
+                    <tr>
+                        <th>MBTI</th>
+                        <td>'.$row['mbti_code'].'</td>
+                    </tr>
+
+                    <tr>
+                        <th>Top RIASEC</th>
+                        <td>'.$row['top_riasec'].'</td>
+                    </tr>
+
+                    <tr>
+                        <th>Jurusan Rekomendasi</th>
+                        <td>'.$row['recommended_major'].'</td>
+                    </tr>
+
+                    <tr>
+                        <th>Tanggal</th>
+                        <td>'.date(
+                            'd M Y H:i',
+                            strtotime($row['created_at'])
+                        ).'</td>
+                    </tr>
+
+                </table>
+
+            </div>
 
         </div>
-
-        <!-- FOOTER -->
-        <footer class="sticky-footer bg-white">
-
-            <div class="container my-auto">
-
-                <div class="copyright text-center my-auto">
-
-                    <span>
-                        Copyright &copy;
-                        PrediksiKarir <?= date('Y') ?>
-                    </span>
-
-                </div>
-
-            </div>
-
-        </footer>
 
     </div>
 
 </div>
 
-<!-- SCROLL -->
-<a class="scroll-to-top rounded"
-    href="#page-top">
+';
 
-    <i class="fas fa-angle-up"></i>
+?>
 
-</a>
+                                <?php endwhile; ?>
+
+                            <?php else: ?>
+
+                                <tr>
+
+                                    <td colspan="8"
+                                        class="text-center text-muted">
+
+                                        Belum ada hasil tes.
+
+                                    </td>
+
+                                </tr>
+
+                            <?php endif; ?>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MODALS -->
+<?= $allModals ?>
 
 <!-- JS -->
 <script src="vendor/jquery/jquery.min.js"></script>

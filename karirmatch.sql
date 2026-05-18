@@ -2,7 +2,7 @@ create database karirmatch;
 
 USE karirmatch;
 
--- =========================
+-- ================
 -- USERS
 -- =========================
 CREATE TABLE users (
@@ -12,6 +12,7 @@ CREATE TABLE users (
     password VARCHAR(255),
     phone VARCHAR(20),
     class ENUM('10','11','12'),
+    gender ENUM('L','P'),
     role ENUM('admin','user') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -195,6 +196,9 @@ CREATE TABLE test_results (
     REFERENCES mbti_types(code)
     ON DELETE SET NULL
 );
+
+ALTER TABLE test_results
+ADD recommended_careers TEXT;
 
 -- =========================
 -- DEFAULT ADMIN

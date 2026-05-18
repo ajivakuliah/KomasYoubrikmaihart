@@ -244,7 +244,7 @@ $relations = $conn->query("
     </li>
 
     <!-- RELASI RIASEC JURUSAN -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-riasec-majors.php">
             <i class="fas fa-university"></i>
             <span>Relasi RIASEC-Jurusan</span>

@@ -199,7 +199,7 @@ $relations = $conn->query("
     </li>
 
     <!-- RELASI MBTI RIASEC -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-mbti-riasec.php">
             <i class="fas fa-random"></i>
             <span>Relasi MBTI-RIASEC</span>

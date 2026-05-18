@@ -260,7 +260,7 @@ $majors = $conn->query("
     </li>
 
     <!-- DATA JURUSAN -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="admin-majors.php">
             <i class="fas fa-graduation-cap"></i>
             <span>Data Jurusan</span>
